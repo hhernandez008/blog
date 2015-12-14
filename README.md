@@ -5,7 +5,7 @@
 ### Suggested Pages
 
 - Home / Landing Page
-	- What happens when a user is logged in vs logged out?
+	- What happens when a user is logged in vs logged out?displa
 	- Where do I login?
 	- Where can I register?
 - Registration
@@ -94,7 +94,7 @@
 		- success (boolean) - whether the api call was successful or not
 		- data (array of objects) - each object has the following
 			- ids (array) - array of ints with unique ids of the deleted blog entries
-		- errors (array of objects)[optional] - array of strings with any errors that happened, if any
+		- errors (array of objects)[optional] - array of objects with any errors that happened, if any
 			- id (int) - unique ID of the blog entry that was not deleted
 			- error_messages (array of strings) - array of strings with any errors that happened, if any
 - **read_one_blog**
