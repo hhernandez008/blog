@@ -57,8 +57,8 @@
 	- response:
 		- success (boolean) - whether the api call was successful or not
 		- data (object)
-		- id (int) - unique id of the newly created blog
-		- ts (timestamp) - unix timestamp of the blogs creation time
+			- id (int) - unique id of the newly created blog
+			- ts (timestamp) - unix timestamp of the blogs creation time
 	- errors (array of strings)[optional] - array of strings with errors that happened, if any
 - **list_blogs**
 	- example data urls : 
