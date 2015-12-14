@@ -102,8 +102,8 @@
 		- s-apis.learningfuze.com/blog/read_error.json
 	- use: retrieves information for one blog entry
 	- parameters:
-	- id (int) : id of the blog
-	- auth_token (string)[optional]: user’s current authentication token.  If not provided, only public blog entries will be  returned
+		- id (int) : id of the blog
+		- auth_token (string)[optional]: user’s current authentication token.  If not provided, only public blog entries will be  returned
 	- response:
 		- success (boolean) - whether the api call was successful or not
 		- data (object)
