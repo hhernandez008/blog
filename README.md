@@ -92,7 +92,7 @@
 	- response:
 		- success (boolean) - whether the api call was successful or not
 		- data (array of objects) - each object has the following
-			- id (int) - unique id of the deleted blog
+			- ids (array) - array of ints with unique ids of the deleted blog entries
 		- errors (array of objects)[optional] - array of strings with any errors that happened, if any
 			- id (int) - unique ID of the blog entry that was not deleted
 			- error_messages (array of strings) - array of strings with any errors that happened, if any
