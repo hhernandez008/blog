@@ -116,7 +116,7 @@
 		- tags (array): array of strings that categorize the blog entry
 		- public (boolean): whether the blog should be publicly displayed or not
 	- errors (array of strings)[optional] - array of strings with errors that happened, if any
-- update_blog
+- **update_blog**
 	- example data urls : 
 		- s-apis.learningfuze.com/blog/update.json
 		- s-apis.learningfuze.com/blog/update_error.json
