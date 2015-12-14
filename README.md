@@ -98,8 +98,8 @@
 		- error_messages (array of strings) - array of strings with any errors that happened, if any
 - **read_one_blog**
 	- example data urls : 
-	- s-apis.learningfuze.com/blog/read.json
-	- s-apis.learningfuze.com/blog/read_error.json
+		- s-apis.learningfuze.com/blog/read.json
+		- s-apis.learningfuze.com/blog/read_error.json
 	- use: retrieves information for one blog entry
 	- parameters:
 	- id (int) : id of the blog
