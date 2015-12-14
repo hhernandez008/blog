@@ -76,10 +76,11 @@
 			- uid (int) : the id of the user that created the blog
 			- ts (timestamp) - unix timestamp of the blogs creation time
 			- title (string): title of the blog entry
-			- text (string): main description of the blog entry
 			- summary (string) : first X number of characters of the text & or title.
 			- tags (array): array of strings that categorize the blog entry
 			- public (boolean): whether the blog should be publicly displayed or not
+			- published (string): date and time the entry was published
+			- edited (string): date and time the entry was last edited, or same as published if not edited
 		- errors (array of strings)[optional] - array of strings with errors that happened, if any
 - **delete_blogs**
 	- example data urls : 
