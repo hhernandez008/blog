@@ -72,15 +72,15 @@
 	- response:
 		- success (boolean) - whether the api call was successful or not
 		- data (array of objects) - each object has the following
-		- id (int) - unique id of the newly created blog
-		- uid (int) : the id of the user that created the blog
-		- ts (timestamp) - unix timestamp of the blogs creation time
-		- title (string): title of the blog entry
-		- text (string): main description of the blog entry
-		- summary (string) : first X number of characters of the text & or title.
-		- tags (array): array of strings that categorize the blog entry
-		- public (boolean): whether the blog should be publicly displayed or not
-	- errors (array of strings)[optional] - array of strings with errors that happened, if any
+			- id (int) - unique id of the newly created blog
+			- uid (int) : the id of the user that created the blog
+			- ts (timestamp) - unix timestamp of the blogs creation time
+			- title (string): title of the blog entry
+			- text (string): main description of the blog entry
+			- summary (string) : first X number of characters of the text & or title.
+			- tags (array): array of strings that categorize the blog entry
+			- public (boolean): whether the blog should be publicly displayed or not
+		- errors (array of strings)[optional] - array of strings with errors that happened, if any
 - **delete_blogs**
 	- example data urls : 
 		- s-apis.learningfuze.com/blog/delete.json
@@ -92,10 +92,10 @@
 	- response:
 		- success (boolean) - whether the api call was successful or not
 		- data (array of objects) - each object has the following
-		- id (int) - unique id of the deleted blog
+			- id (int) - unique id of the deleted blog
 		- errors (array of objects)[optional] - array of strings with any errors that happened, if any
-		- id (int) - unique ID of the blog entry that was not deleted
-		- error_messages (array of strings) - array of strings with any errors that happened, if any
+			- id (int) - unique ID of the blog entry that was not deleted
+			- error_messages (array of strings) - array of strings with any errors that happened, if any
 - **read_one_blog**
 	- example data urls : 
 		- s-apis.learningfuze.com/blog/read.json
@@ -107,14 +107,14 @@
 	- response:
 		- success (boolean) - whether the api call was successful or not
 		- data (object)
-		- id (int) - unique id of the newly created blog
-		- uid (int) : the id of the user that created the blog
-		- ts (timestamp) - unix timestamp of the blogs creation time
-		- title (string): title of the blog entry
-		- text (string): main description of the blog entry
-		- summary (string) : first X number of characters of the text & or title.
-		- tags (array): array of strings that categorize the blog entry
-		- public (boolean): whether the blog should be publicly displayed or not
+			- id (int) - unique id of the newly created blog
+			- uid (int) : the id of the user that created the blog
+			- ts (timestamp) - unix timestamp of the blogs creation time
+			- title (string): title of the blog entry
+			- text (string): main description of the blog entry
+			- summary (string) : first X number of characters of the text & or title.
+			- tags (array): array of strings that categorize the blog entry
+			- public (boolean): whether the blog should be publicly displayed or not
 	- errors (array of strings)[optional] - array of strings with errors that happened, if any
 - **update_blog**
 	- example data urls : 
