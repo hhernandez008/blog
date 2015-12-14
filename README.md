@@ -153,7 +153,7 @@
 	- errors (array of strings)[optional] - array of strings with errors that happened, if any
 - **register_user**
 	- example data urls : 
-		- s-apis.learningfuze.com/blog/registert.json
+		- s-apis.learningfuze.com/blog/register.json
 		- s-apis.learningfuze.com/blog/register_error.json
 	- use: creates a user account
 	- parameters:
