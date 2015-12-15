@@ -1,3 +1,4 @@
+
 .row{
     margin: 10px 0;
 }
@@ -13,30 +14,26 @@
 #articleContainer{
     border: 1px solid #e7e7e7;
     border-radius: 4px;
-    min-height: 85vh;
-    /* Testing properties */
-    position: relative;
-
+    background-color: #f8f8f8;
+    height: 100%;
+}
+.articleTitle{
+    color: #3b6b9c;
 }
 .article{
     border: 1px solid #e7e7e7;
     border-radius: 4px;
+    background-color: #ffffff;
     margin: 10px;
     position: relative;
     height: 0;
-    padding:10px 10px 100% 10px;
+    padding:10px 10px 80% 10px;
 }
 .time{
     display: flex;
     flex-direction: row-reverse;
     margin: 10px;
 }
-
-#articleNav{
-    border: 1px solid #e7e7e7;
-    border-radius: 4px;
-    min-height: 85vh;
-    margin-left: 20px;
-    /* Testing properties */
-    position: relative;
+.tags{
+    margin: 10px;
 }

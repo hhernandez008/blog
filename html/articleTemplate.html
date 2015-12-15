@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="blogApp">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>My Blog</title>
 
     <meta name="viewport" content="initial-scale=1, user-scalable=no">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -13,10 +13,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
 
     <link rel="stylesheet" href="../styles/articleStyle.css">
+    <link rel="stylesheet" href="../styles/sideNavStyle.css">
+
+    <script src="../scripts/appAndServices.js"></script>
+    <script src="../scripts/controllersAndDirectives.js"></script>
 </head>
 <body>
-    <div class="container">
-        <nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <nav class="navbar navbar-inverse">
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">
                     My Blog
@@ -55,7 +59,7 @@
         </div>
         <div class="row mainContent">
             <div class="col-sm-8 col-md-offset-1 col-md-6" id="articleContainer">
-                <h3 class="articleHead">
+                <h3 class="articleTitle">
                     Article Title
                 </h3>
                 <div class="article">
@@ -68,9 +72,15 @@
                 <div class="time">
                     Last Edited: 2015-12-08 08:38:33
                 </div>
+                <div class="tags">
+                    Tags:
+                    <a href="">blogs</a>
+                    <a href="">cats</a>
+                    <a href="">fun</a>
+                </div>
             </div>
-            <div class="col-sm-4" id="articleNav">
-                navigation/info
+            <div class="col-sm-4">
+                <side-nav></side-nav>
             </div>
         </div>
     </div>
