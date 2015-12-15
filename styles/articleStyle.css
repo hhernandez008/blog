@@ -15,7 +15,6 @@
     border: 1px solid #e7e7e7;
     border-radius: 4px;
     background-color: #f8f8f8;
-    height: 100%;
 }
 .articleTitle{
     color: #3b6b9c;
@@ -26,8 +25,8 @@
     background-color: #ffffff;
     margin: 10px;
     position: relative;
-    height: 0;
-    padding:10px 10px 80% 10px;
+    min-height: 50vh;
+    padding: 10px;
 }
 .time{
     display: flex;
