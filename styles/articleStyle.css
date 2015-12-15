@@ -1,6 +1,14 @@
 .row{
+    margin: 10px 0;
+}
+.previous{
+    float: left;
+}
+.next{
+    float: right;
+}
+.mainContent{
     display: flex;
-    margin: 0;
 }
 #articleContainer{
     border: 1px solid #e7e7e7;
