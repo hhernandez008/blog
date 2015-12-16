@@ -29,7 +29,7 @@ app.service("userService", function($http, $log, $q){
             if(response.data.success){
                 defer.resolve(response.data.data);
             }else{
-                defer.resolve(response.data);
+                defer.reject(response.data);
             }
         }, function(response){
             //failed response
@@ -53,7 +53,7 @@ app.service("userService", function($http, $log, $q){
             if(response.data.success){
                 defer.resolve(response.data.data);
             }else{
-                defer.resolve(response.data);
+                defer.reject(response.data);
             }
         }, function(response){
             //failed response
@@ -77,7 +77,7 @@ app.service("userService", function($http, $log, $q){
             if(response.data.success){
                 defer.resolve(response.data.data);
             }else{
-                defer.resolve(response.data);
+                defer.reject(response.data);
             }
         }, function(response){
             //failed response
@@ -101,7 +101,7 @@ app.service("userService", function($http, $log, $q){
             if(response.data.success){
                 defer.resolve(response.data.data);
             }else{
-                defer.resolve(response.data);
+                defer.reject(response.data);
             }
         }, function(response){
             //failed response
@@ -125,7 +125,7 @@ app.service("userService", function($http, $log, $q){
             if(response.data.success){
                 defer.resolve(response.data.data);
             }else{
-                defer.resolve(response.data);
+                defer.reject(response.data);
             }
         }, function(response){
             //failed response
@@ -158,7 +158,7 @@ app.service("userService", function($http, $log, $q){
             if(response.data.success){
                 defer.resolve(response.data.data);
             }else{
-                defer.resolve(response.data);
+                defer.reject(response.data);
             }
         }, function(response){
             //failed response
@@ -182,7 +182,7 @@ app.service("userService", function($http, $log, $q){
             if(response.data.success){
                 defer.resolve(response.data.data);
             }else{
-                defer.resolve(response.data);
+                defer.reject(response.data);
             }
         }, function(response){
             //failed response
@@ -206,7 +206,7 @@ app.service("userService", function($http, $log, $q){
             if(response.data.success){
                 defer.resolve(response.data.data);
             }else{
-                defer.resolve(response.data);
+                defer.reject(response.data);
             }
         }, function(response){
             //failed response
@@ -230,7 +230,7 @@ app.service("userService", function($http, $log, $q){
             if(response.data.success){
                 defer.resolve(response.data.data);
             }else{
-                defer.resolve(response.data);
+                defer.reject(response.data);
             }
         }, function(response){
             //failed response
@@ -254,7 +254,7 @@ app.service("userService", function($http, $log, $q){
             if(response.data.success){
                 defer.resolve(response.data.data);
             }else{
-                defer.resolve(response.data);
+                defer.reject(response.data);
             }
         }, function(response){
             //failed response

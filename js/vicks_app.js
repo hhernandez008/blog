@@ -6,12 +6,10 @@ vicks_app.config(['$routeProvider',
     function ($routeProvider) {
         $routeProvider.
         when('/views/login', {
-            templateUrl: 'views/login.html',
-            
+            templateUrl: 'views/login.html'
         }).
         when('/views/register', {
-            templateUrl: 'views/register.html',
-           
+            templateUrl: 'views/register.html'
         }).
         otherwise({
             redirectTo: '/views/login'
