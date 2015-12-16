@@ -1,17 +1,19 @@
 <div class="row">
     <div class="col-lg-4 col-md-4 col-sm-3 col-xs-2"></div>
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-8 jumbotron">
-        <form action="#" class="form-signin">
+        <form action="#" class="form-signin" name='login' novalidate>
             <div id="textintro">
                 <h1 class="form-signin-heading">Login</h1>
                 <p>Start Blogging Now!</p>
             </div>
             <label for="inputEmail" class="sr-only">Email address</label>
-            <input type="email" name="email" placeholder="Email" id="inputEmail" class="form-control" required autofocus>
+            <input type="email" name="email" placeholder="Email" id="inputEmail" class="form-control" ng-required='true' ng-model='email'>
+             <p ng-show="login.email.$invalid && login.email.$touched" class='error_msg'>Please enter your email</p>
             <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password" name="password" id="inputPassword" placeholder="Password" class="form-control">
-
-            <button class="btn btn-lg btn-success btn-block" type="submit">Sign in</button>
+            <input type="password" name="password" id="inputPassword" placeholder="Password" class="form-control" ng-required='true' ng-model='password' ng-minlength='6' >
+            <p ng-show="login.password.$invalid && login.password.$touched" class='error_msg'>Password is invalid</p>
+            <button class="btn btn-lg btn-success btn-block" type="submit"
+            ng-disabled='login.email.$invalid || login.password.$invalid'>Sign in</button>
             <p class='registerOption'>or</p>
             <p class='registerOption'><a href="#views/register">Register</a></p>
         </form>
