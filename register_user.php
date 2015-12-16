@@ -39,9 +39,12 @@ foreach($_POST as $key=>$value)
 	{
 		array_push($response['errors'], $input[$key]['regex_error']);
 	}
+}
 
-	// Only do existence queries if regex tests pass.
-	if (empty($response['errors']))
+// Only do existence queries if regex tests pass.
+if (empty($response['errors']))
+{
+	foreach($_POST as $key=>$value)
 	{
 		require_once('querytests.php');
 		if (doesEntryExist($key, $input[$key]['value']))
@@ -51,7 +54,7 @@ foreach($_POST as $key=>$value)
 	}
 }
 
-// If we don't pass any regex tests, then exit right away.
+// If we don't pass any existence tests, then exit right away.
 if (empty($response['errors']))
 {
 	require('mysql_connect.php');
