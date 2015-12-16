@@ -1,0 +1,26 @@
+#sideNav{
+    border: 1px solid #e7e7e7;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    padding: 10px;
+    min-height: 70vh;
+    margin-left: 20px;
+    /* Testing properties */
+    position: relative;
+}
+.shortList, .tagList{
+    background-color: #ffffff;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #e7e7e7;
+    border-radius: 4px;
+}
+
+.sectionHead{
+    line-height: 1;
+    font-weight: bold;
+}
+.shortList ul{
+    list-style: none;
+    padding-left: 20px;
+}

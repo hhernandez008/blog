@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="blogApp">
+<head>
+    <meta charset="UTF-8">
+    <title>My Blog</title>
+
+    <meta name="viewport" content="initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.js"></script>
+
+    <link rel="stylesheet" href="../styles/articleStyle.css">
+    <link rel="stylesheet" href="../styles/sideNavStyle.css">
+
+    <script src="../scripts/appAndServices.js"></script>
+    <script src="../scripts/controllersAndDirectives.js"></script>
+</head>
+<body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-inverse">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    My Blog
+                </a>
+            </div>
+            <ul id="pages" class="nav navbar-nav">
+                <li>
+                    <a href="">Home</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav pull-right">
+                <li>
+                    <a href="">
+                        <button type="button" class="btn btn-info">Login</button>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="row neighborNav">
+            <div class="previous">
+                <a href="">
+                    <button type="button" class="btn btn-default">
+                        <span class="glyphicon glyphicon-menu-left"></span>
+                            Previous
+                    </button>
+                </a>
+            </div>
+            <div class="next">
+                <a href="">
+                    <button type="button" class="btn btn-default">
+                        Next
+                        <span class="glyphicon glyphicon-menu-right"></span>
+                    </button>
+                </a>
+            </div>
+        </div>
+        <div class="row mainContent">
+            <div class="col-sm-8 col-md-offset-1 col-md-6" id="articleContainer">
+                <h3 class="articleTitle">
+                    Article Title
+                </h3>
+                <div class="article">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse mattis rutrum lobortis.
+                    Aliquam fringilla nisl pulvinar malesuada tempor. Ut luctus tempor mauris id sollicitudin. Cras
+                    aliquam fermentum diam ornare sagittis. Phasellus id turpis ante. Praesent interdum faucibus rhoncus.
+                    Nam velit dolor, viverra eget libero sed, vestibulum commodo magna.
+                </div>
+                <div class="time">
+                    Last Edited: 2015-12-08 08:38:33
+                </div>
+                <div class="tags">
+                    Tags:
+                    <a href="">blogs</a>
+                    <a href="">cats</a>
+                    <a href="">fun</a>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <side-nav></side-nav>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
