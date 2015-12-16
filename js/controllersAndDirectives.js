@@ -10,7 +10,7 @@ app.controller("sideNavCtrl", function(getBlogData){
 app.directive("sideNav", function(){
     return {
         restrict: "AE",
-        templateUrl: "../html/sideNav.html",
+        templateUrl: "../views/sideNav.html",
         controller: "sideNavCtrl",
         controllerAs: "snc"
     }
