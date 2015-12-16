@@ -1,7 +1,7 @@
 var app = angular.module("blogApp");
 
 app.controller("sideNavCtrl", function(getBlogData){
-    getBlogData.createArticle({title: "art1"});
+
 
 
 });

@@ -1,99 +1,24 @@
 var app = angular.module("blogApp", []);
 
 app.config(function($httpProvider){
-    //$httpProvider.defaults.headers.get = {};
     $httpProvider.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
 });
 
-app.service("getBlogData", function($http, $log){
+app.service("userService", function($http, $log, $q){
+    var useServ = this;
     var paramString = function(object){
         object = $.param(object);
         return object;
     };
-    this.createArticle = function(data){
-        //data {title, text, tags(array), public(bool), auth_token}
-        data = paramString(data);
-        $http({
-            url: "http://s-apis.learningfuze.com/blog/create.json",
-            method: "post",
-            data: data
-        }).then(function(response){
-            //successful response
-            console.log("success", response);
 
-        }, function(response){
-            //failed response
-            $log.error(response);
-        })
-    };
+    //set user uid & auth_token from login/register success here
+    useServ.uid = null; //number
+    useServ.authToken = ""; //string
 
-    this.listArticles = function(data){
-        //data {tag[optional], count[optional], auth_token[optional]}
+    useServ.loginUser = function(data){
+        //data {email, password}
         data = paramString(data);
-        $http({
-            url: "http://s-apis.learningfuze.com/blog/list.json",
-            method: "post",
-            data: data
-        }).then(function(response){
-            //successful response
-            console.log("success", response);
-        }, function(response){
-            //failed response
-            $log.error(response);
-        })
-    };
-
-    this.deleteArticles = function(data){
-        //data
-        data = paramString(data);
-        $http({
-            url: "http://s-apis.learningfuze.com/blog/delete.json",
-            method: "post",
-            data: data
-        }).then(function(response){
-            //successful response
-            console.log("success", response);
-        }, function(response){
-            //failed response
-            $log.error(response);
-        })
-    };
-
-    this.readFullArticle = function(data){
-        //data
-        data = paramString(data);
-        $http({
-            url: "http://s-apis.learningfuze.com/blog/read.json",
-            method: "post",
-            data: data
-        }).then(function(response){
-            //successful response
-            console.log("success", response);
-        }, function(response){
-            //failed response
-            $log.error(response);
-        })
-    };
-
-    this.updateArticle = function(data){
-        //data
-        data = paramString(data);
-        $http({
-            url: "http://s-apis.learningfuze.com/blog/update.json",
-            method: "post",
-            data: data
-        }).then(function(response){
-            //successful response
-            console.log("success", response);
-        }, function(response){
-            //failed response
-            $log.error(response);
-        })
-    };
-
-    this.loginUser = function(data){
-        //data
-        data = paramString(data);
+        var defer = $q.defer();
         $http({
             url: "http://s-apis.learningfuze.com/blog/login.json",
             method: "post",
@@ -101,15 +26,23 @@ app.service("getBlogData", function($http, $log){
         }).then(function(response){
             //successful response
             console.log("success", response);
+            if(response.data.success){
+                defer.resolve(response.data.data);
+            }else{
+                defer.resolve(response.data);
+            }
         }, function(response){
             //failed response
             $log.error(response);
-        })
+            defer.reject("Unable to connect to server at this time");
+        });
+        return defer.promise;
     };
 
-    this.registerUser = function(data){
-        //data
+    useServ.registerUser = function(data){
+        //data {email, display_name, password}
         data = paramString(data);
+        var defer = $q.defer();
         $http({
             url: "http://s-apis.learningfuze.com/blog/register.json",
             method: "post",
@@ -117,15 +50,23 @@ app.service("getBlogData", function($http, $log){
         }).then(function(response){
             //successful response
             console.log("success", response);
+            if(response.data.success){
+                defer.resolve(response.data.data);
+            }else{
+                defer.resolve(response.data);
+            }
         }, function(response){
             //failed response
             $log.error(response);
-        })
+            defer.reject("Unable to connect to server at this time");
+        });
+        return defer.promise;
     };
 
-    this.editUser = function(data){
-        //data
+    useServ.editUser = function(data){
+        //data {uid, auth_token, display_name, password[optional], profile_img[optional]}
         data = paramString(data);
+        var defer = $q.defer();
         $http({
             url: "http://s-apis.learningfuze.com/blog/edit.json",
             method: "post",
@@ -133,15 +74,195 @@ app.service("getBlogData", function($http, $log){
         }).then(function(response){
             //successful response
             console.log("success", response);
+            if(response.data.success){
+                defer.resolve(response.data.data);
+            }else{
+                defer.resolve(response.data);
+            }
         }, function(response){
             //failed response
             $log.error(response);
-        })
+            defer.reject("Unable to connect to server at this time");
+        });
+        return defer.promise;
     };
 
-    this.logoutUser = function(data){
+    useServ.getUserProfile = function(data){
+        //data {uid, auth_token}
+        data = paramString(data);
+        var defer = $q.defer();
+        $http({
+            url: "http://s-apis.learningfuze.com/blog/profile.json",
+            method: "post",
+            data: data
+        }).then(function(response){
+            //successful response
+            console.log("success", response);
+            if(response.data.success){
+                defer.resolve(response.data.data);
+            }else{
+                defer.resolve(response.data);
+            }
+        }, function(response){
+            //failed response
+            $log.error(response);
+            defer.reject("Unable to connect to server at this time");
+        });
+        return defer.promise;
+    };
 
-    }
+    useServ.logoutUser = function(data){
+        //data {auth_token}
+        data = paramString(data);
+        var defer = $q.defer();
+        $http({
+            url: "http://s-apis.learningfuze.com/blog/logout.json",
+            method: "post",
+            data: data
+        }).then(function(response){
+            //successful response
+            console.log("success", response);
+            if(response.data.success){
+                defer.resolve(response.data.data);
+            }else{
+                defer.resolve(response.data);
+            }
+        }, function(response){
+            //failed response
+            $log.error(response);
+            defer.reject("Unable to connect to server at this time");
+        });
+        return defer.promise;
+    };
+
+}).service("articleService", function($http, $log, $q){
+    var artServ = this;
+    var paramString = function(object){
+        object = $.param(object);
+        return object;
+    };
+
+    artServ.listArticles = function(data){
+        if(data != undefined) {
+            //data {tag[optional], count[optional], auth_token[optional]}
+            data = paramString(data);
+        }
+        var defer = $q.defer();
+        $http({
+            url: "http://s-apis.learningfuze.com/blog/list.json",
+            method: "post",
+            data: data
+        }).then(function(response){
+            //successful response
+            console.log("success", response);
+            if(response.data.success){
+                defer.resolve(response.data.data);
+            }else{
+                defer.resolve(response.data);
+            }
+        }, function(response){
+            //failed response
+            $log.error(response);
+            defer.reject("Unable to connect to server at this time");
+        });
+        return defer.promise;
+    };
+
+    artServ.readFullArticle = function(data){
+        //data {id, auth_token[optional]}
+        data = paramString(data);
+        var defer = $q.defer();
+        $http({
+            url: "http://s-apis.learningfuze.com/blog/read.json",
+            method: "post",
+            data: data
+        }).then(function(response){
+            //successful response
+            console.log("success", response);
+            if(response.data.success){
+                defer.resolve(response.data.data);
+            }else{
+                defer.resolve(response.data);
+            }
+        }, function(response){
+            //failed response
+            $log.error(response);
+            defer.reject("Unable to connect to server at this time");
+        });
+        return defer.promise;
+    };
+
+    artServ.createArticle = function(data){
+        //data {title, text, tags(array), public(bool), auth_token}
+        data = paramString(data);
+        var defer = $q.defer();
+        $http({
+            url: "http://s-apis.learningfuze.com/blog/create.json",
+            method: "post",
+            data: data
+        }).then(function(response){
+            //successful response
+            console.log("success", response);
+            if(response.data.success){
+                defer.resolve(response.data.data);
+            }else{
+                defer.resolve(response.data);
+            }
+        }, function(response){
+            //failed response
+            $log.error(response);
+            defer.reject("Unable to connect to server at this time");
+        });
+        return defer.promise;
+    };
+
+    artServ.deleteArticles = function(data){
+        //data {blog_ids[array], auth_token}
+        data = paramString(data);
+        var defer = $q.defer();
+        $http({
+            url: "http://s-apis.learningfuze.com/blog/delete.json",
+            method: "post",
+            data: data
+        }).then(function(response){
+            //successful response
+            console.log("success", response);
+            if(response.data.success){
+                defer.resolve(response.data.data);
+            }else{
+                defer.resolve(response.data);
+            }
+        }, function(response){
+            //failed response
+            $log.error(response);
+            defer.reject("Unable to connect to server at this time");
+        });
+        return defer.promise;
+    };
+
+    artServ.updateArticle = function(data){
+        //data {id, auth_token, data{title[optional], text[optional], tags[optional], public(bool)[optoinal]}
+        data = paramString(data);
+        var defer = $q.defer();
+        $http({
+            url: "http://s-apis.learningfuze.com/blog/update.json",
+            method: "post",
+            data: data
+        }).then(function(response){
+            //successful response
+            console.log("success", response);
+            if(response.data.success){
+                defer.resolve(response.data.data);
+            }else{
+                defer.resolve(response.data);
+            }
+        }, function(response){
+            //failed response
+            $log.error(response);
+            defer.reject("Unable to connect to server at this time");
+        });
+        return defer.promise;
+    };
 
 });
 
