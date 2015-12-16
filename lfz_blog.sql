@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: Dec 15, 2015 at 09:01 PM
+-- Generation Time: Dec 16, 2015 at 11:10 AM
 -- Server version: 5.5.41-log
 -- PHP Version: 5.6.8
 
@@ -55,9 +55,10 @@ CREATE TABLE IF NOT EXISTS `blog_titles` (
 CREATE TABLE IF NOT EXISTS `logins` (
 `id` int(10) unsigned NOT NULL COMMENT 'Unique entry id.',
   `uid` int(10) unsigned NOT NULL COMMENT 'Id number from `users`.',
-  `login_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Time this id was last logged in.',
-  `login_ip` varchar(20) NOT NULL COMMENT 'The IP that last logged in for this id.'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `login_ip` varchar(64) NOT NULL COMMENT 'The IP that last logged in for this id (sha1-encrypted).',
+  `auth_token` varchar(64) NOT NULL COMMENT 'Encrypted authorization token.',
+  `login_timestamp` int(10) unsigned NOT NULL COMMENT 'Unix timestamp this id was last logged in.'
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
 
 -- --------------------------------------------------------
 
@@ -69,16 +70,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 `id` int(10) unsigned NOT NULL COMMENT 'Unique entry id for the user.',
   `email` varchar(64) NOT NULL,
   `username` varchar(32) NOT NULL COMMENT 'Display name for this user.',
-  `password` varchar(32) NOT NULL COMMENT 'SHA1-encrypted password for this user.',
+  `password` varchar(256) NOT NULL COMMENT 'SHA1-encrypted password for this user.',
   `date_started` datetime NOT NULL COMMENT 'The date-time this user created an account.'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=34 ;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `email`, `username`, `password`, `date_started`) VALUES
-(33, 'rtransfig@gmail.com', 'rtransfig', '9e2dbe8e7d763bb7f52dbddd5bb92739', '2015-12-15 20:56:15');
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=37 ;
 
 --
 -- Indexes for dumped tables
@@ -126,12 +120,12 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Unique entry id fo
 -- AUTO_INCREMENT for table `logins`
 --
 ALTER TABLE `logins`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Unique entry id.';
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Unique entry id.',AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Unique entry id for the user.',AUTO_INCREMENT=34;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Unique entry id for the user.',AUTO_INCREMENT=37;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
