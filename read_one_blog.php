@@ -78,7 +78,7 @@ if (empty($response['errors']))
 					$response['data']['title'] = $row['title'];
 					$response['data']['text'] = $row['text'];
 					$response['data']['summary'] = generateSummary($row['text'], 80);
-					$response['data']['public'] = ($row['status_flags'] & $PUBLIC_BLOG != 0);
+					$response['data']['public'] = ($row['status_flags'] & $PUBLIC_BLOG != 0) ? true : false;
 
 					// Get the tag numbers
 					$tags = strlen($row['tags']) > 0 ? explode(",", $row['tags']) : array();
