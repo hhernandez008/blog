@@ -2,8 +2,9 @@
     <link rel="stylesheet" href="bootstrap/mainBlogStyle.css">
 </head>
 <body>
-    <div id="articleContainer" ng-controller="mainBlogCtrl as mbc">
-        <div class="article" ng-repeat="info in mbc.articleList">
+    <div class="col-sm-8 col-md-offset-1 col-md-6" id="articleContainer"
+            ng-controller="mainBlogCtrl as mbc">
+        <div class="article" ng-repeat="info in mbc.returnArticleList()">
             <div class="articleTitle">
                 <a ng-click="">
                     {{info.title}}
@@ -25,5 +26,8 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="col-sm-4">
+        <side-nav></side-nav>
     </div>
 </body>
