@@ -30,7 +30,10 @@ function didEntryExpire($key, $value, $duration)
 	[
 		'auth_token' => "
 			SELECT id, login_timestamp
-			FROM logins WHERE auth_token='"
+			FROM logins WHERE auth_token='",
+		'deleted' => "
+			SELECT id, time_deleted
+			FROM blog_infos WHERE id='"
 	];
 
 	if (!isset($query_tests[$key])) return false;
