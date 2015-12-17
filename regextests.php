@@ -2,13 +2,15 @@
 
 function testValidEntry($key, $value)
 {
-	$regex_tests = 
+	$regex_tests =
 	[
 		'email' => "/^([A-Za-z0-9!#$%&'*\+\-\/\=?^_`{|}~]+)(\.?[A-Za-z0-9!#$%&'*\+\-\/\=?^_`{|}~]+)*(@)([A-Za-z0-9!#$%&'*\+\-\/\=?^_`{|}~]+)(\.?[A-Za-z0-9!#$%&'*\+\-\/\=?^_`{|}~]+)*$/",
 		'display_name' => '/^[A-Za-z0-9_]{1,32}$/',
-		'password' => '/^.{8,32}$/'
+		'password' => '/^.{8,32}$/',
+		'firstname' => '/^[A-Za-z\- ]{1,32}$/',
+		'lastname' => '/^[A-Za-z\- ]{1,32}$/',
 	];
-	
+
 	return preg_match($regex_tests[$key], $value);
 }
 
