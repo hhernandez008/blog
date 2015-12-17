@@ -72,3 +72,38 @@ app.controller("sideNavCtrl", function (articleService, userService, dummyData) 
         controllerAs: "snc"
     }
 });
+
+app.controller("loginCtrl", function(userService, dummyData) {
+        var self = this;
+        self.email = '';
+        self.password = '';
+        self.submitLogin = function() {
+            userService.loginUser(self.data);
+        };
+
+});
+
+app.controller("registrationCtrl", function(userService, dummyData) {
+        var self = this;
+        self.fName = '';
+        self.lName = '';
+        self.username = '';
+        self.password = '';
+        self.email = '';
+        self.submitReg = function() {
+            userService.registerUser(self.data);
+        };
+});
+
+app.controller("profileCtrl", function(userService, dummyData) {
+        var self = this;
+        self.fName = '';
+        self.lName = '';
+        self.username = '';
+        self.password = '';
+        self.verify_pw = '';
+        self.email = '';
+        self.sendNewInfo = function() {
+            userService.editUser(self.data);
+        }
+});
