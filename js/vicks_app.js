@@ -13,6 +13,10 @@ vicks_app.config(['$routeProvider',
             templateUrl: 'views/register.html',
            
         }).
+        when('/views/edit-profile', {
+            templateUrl: 'views/userEdit.html',
+           
+        }).
         otherwise({
             redirectTo: '/views/login'
         });
