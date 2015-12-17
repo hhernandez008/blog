@@ -49,3 +49,10 @@ body {
 .registerOption {
     margin-bottom: 5px !important;
 }
+
+p.error_msg  {
+    font-size: 14px;
+    font-weight: bold;
+    color: orangered;
+    text-align: center;
+}
