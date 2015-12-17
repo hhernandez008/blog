@@ -1,11 +1,11 @@
 var app = angular.module("blogApp");
 
-app.controller("mainBlogCtrl", function (articleService, userService, dummyData) {
+app.controller("mainBlogCtrl", function (articleReadService, articleEditService, userService, dummyData) {
     var mbc = this;
     //store the full array of articles in the article service
-    articleService.articleList = [];
-    articleService.listArticles().then(function (response) {
-        articleService.articleList = dummyData.articleList;
+    articleReadService.articleList = [];
+    articleReadService.listArticles().then(function (response) {
+        articleReadService.articleList = dummyData.articleList;
         //PUSH to articleList so saved in array; WAS AN OBJECT
         //articleService.articleList.push(response);
     }, function(response){
@@ -14,21 +14,32 @@ app.controller("mainBlogCtrl", function (articleService, userService, dummyData)
 
     //for view to display article list array
     mbc.returnArticleList = function(){
-        return articleService.articleList;
+        return articleReadService.articleList;
+    };
+
+    mbc.readFullArticle = function(data){
+        //console.log("readFullArt", data);
+        if(userService.authToken.length > 0){
+            data = {
+                id: data,
+                auth_token: userService.authToken
+            };
+        }
+        articleReadService.readFullArticle(data)
+            .then(function(response){
+                articleReadService.currentArticle[0] = (response);
+            });
     }
 
-
-}).controller("singleReadCtrl", function (articleService, userService, dummyData) {
-
+}).controller("fullArticleCtrl", function (articleReadService, articleEditService, userService, dummyData) {
+        this.currentArticle = articleReadService.returnCurrentArticle;
 });
 
 
-app.controller("sideNavCtrl", function (articleService, userService, dummyData) {
+app.controller("sideNavCtrl", function (articleReadService, articleEditService, userService, dummyData) {
     var snc = this;
-    snc.lastFiveArticles = [];
-    snc.tags = [];
 
-    articleService.listArticles().then(function (response) {
+    articleReadService.listArticles().then(function (response) {
         response = dummyData.articleList;
         if(response.length > 5){
             for(var i = 0; i <= 5; i++){
@@ -44,23 +55,22 @@ app.controller("sideNavCtrl", function (articleService, userService, dummyData) 
     });
 
     snc.tagList = function(){
-        var articles = articleService.articleList;
-        //articles[0].tags = ["cat", "blog", "fun"]
+        var articles = articleReadService.articleList;
+        var tags = articleReadService.tags;
         for(var i = 0; i < articles.length; i++){
-            if(i == 0){
+            if(i == 0 && tags.length < 1){
                 for(tag in articles[i].tags){
-                    snc.tags.push(articles[i].tags[tag]);
+                    tags.push(articles[i].tags[tag]);
                 }
             }else{
                 for(tag in articles[i].tags){
-                    if(snc.tags.indexOf(articles[i].tags[tag]) == -1){
-                        snc.tags.push(articles[i].tags[tag]);
+                    if(tags.indexOf(articles[i].tags[tag]) == -1){
+                        tags.push(articles[i].tags[tag]);
                     }
                 }
             }
-            console.log(snc.tags);
         }
-        return snc.tags;
+        return tags;
     }
 
 

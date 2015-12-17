@@ -1,4 +1,4 @@
-var app = angular.module("blogApp", ["ngRoute"]);
+var app = angular.module("blogApp", ["ngRoute", "ngSanitize"]);
 
 app.config(['$routeProvider',
     // $routeProvider used to load proper template in index.html
@@ -6,7 +6,8 @@ app.config(['$routeProvider',
         $routeProvider
             .when("/", {
                 templateUrl: "views/mainBlog.html",
-                controller: "mainBlogCtrl"
+                controller: "mainBlogCtrl",
+                controllerAs: "mbc"
             })
             .when('/login', {
                 templateUrl: 'views/login.html'
@@ -14,8 +15,16 @@ app.config(['$routeProvider',
             .when('/register', {
                 templateUrl: 'views/register.html'
             })
+            .when('/edit-profile', {
+                templateUrl: 'views/userEdit.html'
+            })
+            .when("/full-article", {
+                templateUrl: "views/articleTemplate.html",
+                controller: "fullArticleCtrl",
+                controllerAs: "fac"
+            })
             .otherwise({
-                redirectTo: '/login'
+                redirectTo: '/'
             });
     }
 ]);
@@ -155,14 +164,17 @@ app.service("userService", function($http, $log, $q){
         return defer.promise;
     };
 
-}).service("articleService", function($http, $log, $q){
-    var artServ = this;
+}).service("articleReadService", function($http, $log, $q){
+    var readServ = this;
     var paramString = function(object){
         object = $.param(object);
         return object;
     };
 
-    artServ.listArticles = function(data){
+    readServ.lastFiveArticles = [];
+    readServ.tags = [];
+
+    readServ.listArticles = function(data){
         var defer = $q.defer();
         if(data != undefined) {
             //data {tag[optional], count[optional], auth_token[optional]}
@@ -206,7 +218,7 @@ app.service("userService", function($http, $log, $q){
         return defer.promise;
     };
 
-    artServ.readFullArticle = function(data){
+    readServ.readFullArticle = function(data){
         //data {id, auth_token[optional]}
         data = paramString(data);
         var defer = $q.defer();
@@ -230,7 +242,20 @@ app.service("userService", function($http, $log, $q){
         return defer.promise;
     };
 
-    artServ.createArticle = function(data){
+    readServ.currentArticle = [];
+
+    readServ.returnCurrentArticle = function(){
+        return readServ.currentArticle;
+    }
+
+}).service("articleEditService", function($http, $log, $q) {
+    var editServ = this;
+    var paramString = function (object) {
+        object = $.param(object);
+        return object;
+    };
+
+    editServ.createArticle = function(data){
         //data {title, text, tags(array), public(bool), auth_token}
         data = paramString(data);
         var defer = $q.defer();
@@ -254,7 +279,7 @@ app.service("userService", function($http, $log, $q){
         return defer.promise;
     };
 
-    artServ.deleteArticles = function(data){
+    editServ.deleteArticles = function(data){
         //data {blog_ids[array], auth_token}
         data = paramString(data);
         var defer = $q.defer();
@@ -278,7 +303,7 @@ app.service("userService", function($http, $log, $q){
         return defer.promise;
     };
 
-    artServ.updateArticle = function(data){
+    editServ.updateArticle = function(data){
         //data {id, auth_token, data{title[optional], text[optional], tags[optional], public(bool)[optoinal]}
         data = paramString(data);
         var defer = $q.defer();
@@ -301,6 +326,5 @@ app.service("userService", function($http, $log, $q){
         });
         return defer.promise;
     };
-
 });
 

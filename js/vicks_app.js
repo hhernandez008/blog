@@ -4,7 +4,6 @@ vicks_app.config(['$routeProvider',
 
     // $routeProvider used to load proper template in index.html
     function ($routeProvider) {
-<<<<<<< HEAD
         $routeProvider
             .when("/", {
                 templateUrl: "views/mainBlog.html"
@@ -15,26 +14,11 @@ vicks_app.config(['$routeProvider',
             .when('/register', {
                 templateUrl: 'views/register.html'
             })
+            .when('/edit-profile', {
+                templateUrl: 'views/userEdit.html'
+
+            })
             .otherwise({
                 redirectTo: '/login'
             });
     }]);
-=======
-        $routeProvider.
-        when('/views/login', {
-            templateUrl: 'views/login.html',
-            
-        }).
-        when('/views/register', {
-            templateUrl: 'views/register.html',
-           
-        }).
-        when('/views/edit-profile', {
-            templateUrl: 'views/userEdit.html',
-           
-        }).
-        otherwise({
-            redirectTo: '/views/login'
-        });
-}]);
->>>>>>> b4e4b56a001e3c7d50fd9dfe0b14d7aeb2572b47
