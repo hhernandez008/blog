@@ -8,8 +8,8 @@
     <link rel="icon" href="bootstrap/favicon.ico">
     <title>Group 1 Blog</title>
     <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <link href="bootstrap/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+            integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link href="main.css" rel="stylesheet">
 
     <link rel="stylesheet" href="bootstrap/sideNavStyle.css">
@@ -44,9 +44,12 @@
                             <li role="separator" class="divider"></li>
                             <li class="dropdown-header">New User?</li>
                             <li><a href="#/register">Register</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li class="dropdown-header">Current User</li>
+                            <li><a href="#/views/edit-profile">Edit Profile</a></ </ul>
+                            </li>
+
                         </ul>
-                    </li>
-                </ul>
             </div>
             <!--/.nav-collapse -->
         </div>
@@ -56,6 +59,7 @@
 
             <!-- Template goes Here! -->
             <ng-view></ng-view>
+
 
     </div>
     <!-- /container -->
