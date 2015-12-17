@@ -1,20 +1,22 @@
 var app = angular.module("blogApp");
 
-app.controller("sideNavCtrl", function(articleService, userService){
+app.controller("mainBlogCtrl", function (articleService, userService) {
+    var mbc = this;
+    mbc.articleList = [];
+    articleService.listArticles().then(function (response) {
+        //PUSH to articleList so saved in array
+        mbc.articleList.push(response);
+    });
 
-}).controller("mainBlogCtrl", function(articleService, userService){
-    this.articleList = articleService.listArticles()
-        .then(function(response){
-            console.log(response);
-        }, function(response){
-            console.log(response);
-        });
-}).controller("singleReadCtrl", function(articleService, userService){
+
+}).controller("singleReadCtrl", function (articleService, userService) {
 
 });
 
 
-app.directive("sideNav", function(){
+app.controller("sideNavCtrl", function (articleService, userService) {
+
+}).directive("sideNav", function () {
     return {
         restrict: "AE",
         templateUrl: "../views/sideNav.html",

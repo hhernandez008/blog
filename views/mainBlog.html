@@ -1,52 +1,29 @@
-<!DOCTYPE html>
-<html lang="en" ng-app="blogApp">
 <head>
-    <meta charset="UTF-8">
-    <title>My Blog</title>
-
-    <meta name="viewport" content="initial-scale=1, user-scalable=no">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.js"></script>
-
-    <link rel="stylesheet" href="../bootstrap/articleStyle.css">
-    <link rel="stylesheet" href="../bootstrap/sideNavStyle.css">
-
-    <script src="../js/appAndServices.js"></script>
-    <script src="../js/controllersAndDirectives.js"></script>
+    <link rel="stylesheet" href="bootstrap/mainBlogStyle.css">
 </head>
 <body>
-    <div class="container-fluid">
-        <nav class="navbar navbar-inverse">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">
-                    My Blog
+    <div id="articleContainer" ng-controller="mainBlogCtrl as mbc">
+        <div class="article" ng-repeat="info in mbc.articleList">
+            <div class="articleTitle">
+                <a ng-click="">
+                    {{info.title}}
                 </a>
             </div>
-            <ul id="pages" class="nav navbar-nav">
-                <li>
-                    <a href="">Home</a>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav pull-right">
-                <li>
-                    <a href="">
-                        <button type="button" class="btn btn-info">Login</button>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-        <div class="row mainContent" ng-controller="mainBlogCtrl as mbc">
-            <div class="col-sm-8 col-md-offset-1 col-md-6" id="articleContainer">
-                {{mbc.articleList()}}
+            <div class="articleText">
+                {{info.summary}}
             </div>
-            <div class="col-sm-4">
-                <side-nav></side-nav>
+            <div class="articleMeta">
+                <div class="tags">
+                    <span ng-repeat="tag in info.tags">
+                        <a ng-click="">
+                            {{tag}}
+                        </a>
+                    </span>
+                </div>
+                <div class="time">
+                    {{info.edited}}
+                </div>
             </div>
         </div>
     </div>
 </body>
-</html>
