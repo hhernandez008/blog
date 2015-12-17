@@ -14,8 +14,8 @@ function doesEntryExist($key, $value)
 	if (!isset($query_tests[$key])) return false;
 
 	$query_tests[$key] = $query_tests[$key] . $value . "'";
-
-	if (mysqli_query($conn, $query_tests[$key]) && mysqli_num_rows($conn) > 0)
+	$result = mysqli_query($conn, $query_tests[$key]);
+	if ($result && mysqli_num_rows($result) > 0)
 	{
 		return true;
 	}
@@ -40,7 +40,8 @@ function didEntryExpire($key, $value, $duration)
 
 	$query_tests[$key] = $query_tests[$key] . $value . "'";
 
-	if (mysqli_query($conn, $query_tests[$key]) && mysqli_num_rows($conn) > 0)
+	$result = mysqli_query($conn, $query_tests[$key]);
+	if ($result && mysqli_num_rows($result) > 0)
 	{
 		while ($row = mysqli_fetch_assoc($result))
 		{

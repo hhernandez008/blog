@@ -35,7 +35,7 @@ $response =
 // Regex tests
 foreach($_POST as $key=>$value)
 {
-	if (gettype(value) == "integer")
+	if (gettype($value) == "integer")
 		$input[$key]['value'] = makeSafeInt($value);
 	else
 		$input[$key]['value'] = makeSafeString($value);
@@ -89,7 +89,7 @@ if (empty($response['errors']))
 					{
 						// Get the tag names.
 						$tag_query = "SELECT * FROM tags WHERE";
-						for ($i = 0; $i < count($tags) - 1; $i++)
+						for ($i = 0; $i < count($tags) - 1; $i++) // Last element is just blank, so ignore it.
 						{
 							if ($i == 0)
 								$tag_query = $tag_query . " id=" . $tags[$i];
