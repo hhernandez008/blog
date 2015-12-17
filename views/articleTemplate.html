@@ -35,7 +35,7 @@
                 <div class="tags">
                     Tags:
                     <span ng-repeat="tag in info.tags">
-                        <a ng-click="">
+                        <a href="#/search" ng-click="mc.tagSearch(tag)">
                             {{tag}}
                         </a>
                     </span>

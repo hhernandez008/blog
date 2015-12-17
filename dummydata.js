@@ -19,7 +19,7 @@ app.service("dummyData", function(){
            public: true,
            published: "2015-12-17 00:13:41",
            summary: "This is the short form of the entry. It could be all new or a truncated version of the full text",
-           tags: ["blog", "dog", "fun"],
+           tags: ["blog", "fun"],
            title: "The title of your blog",
            ts: 1450311221,
            uid: 759
@@ -41,7 +41,7 @@ app.service("dummyData", function(){
            public: true,
            published: "2015-12-17 00:13:41",
            summary: "This is the short form of the entry. It could be all new or a truncated version of the full text",
-           tags: ["blog", "cats", "bored"],
+           tags: ["blog", "cats"],
            title: "The title of your blog",
            ts: 1450311221,
            uid: 759

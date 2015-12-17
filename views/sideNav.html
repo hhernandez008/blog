@@ -16,7 +16,7 @@
         </p>
         <ul>
             <li ng-repeat="title in snc.lastFiveArticles">
-                <a ng-click="">{{title.title}}</a>
+                <a href="#/full-article" ng-click="mc.readFullArticle(info.id)">{{title.title}}</a>
             </li>
         </ul>
     </div>
@@ -27,7 +27,7 @@
         </p>
         <ul>
             <li ng-repeat="tag in snc.tagList()">
-                <a ng-click="">{{tag}}</a>
+                <a href="#/search" ng-click="mc.tagSearch(tag)">{{tag}}</a>
             </li>
         </ul>
     </div>

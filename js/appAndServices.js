@@ -6,8 +6,8 @@ app.config(['$routeProvider',
         $routeProvider
             .when("/", {
                 templateUrl: "views/mainBlog.html",
-                controller: "mainBlogCtrl",
-                controllerAs: "mbc"
+                controller: "blogListCtrl",
+                controllerAs: "blc"
             })
             .when('/login', {
                 templateUrl: 'views/login.html'
@@ -22,6 +22,11 @@ app.config(['$routeProvider',
                 templateUrl: "views/articleTemplate.html",
                 controller: "fullArticleCtrl",
                 controllerAs: "fac"
+            })
+            .when("/search", {
+                templateUrl: "views/searchResponse.html",
+                controller: "searchCtrl",
+                controllerAs: "sc"
             })
             .otherwise({
                 redirectTo: '/'

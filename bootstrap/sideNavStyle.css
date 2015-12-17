@@ -3,10 +3,13 @@
     border-radius: 4px;
     background-color: #f8f8f8;
     padding: 10px;
-    min-height: 70vh;
+    /*min-height: 70vh;*/
     margin-left: 20px;
     /* Testing properties */
     position: relative;
+}
+.search{
+    margin: 10px;
 }
 .shortList, .tagList{
     background-color: #ffffff;
