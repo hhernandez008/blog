@@ -1,0 +1,49 @@
+.row{
+    margin: 10px 0;
+}
+.mainContent{
+    display: flex;
+}
+#articleContainer{
+    border: 1px solid #e7e7e7;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+}
+
+.article{
+    border: 1px solid #e7e7e7;
+    border-radius: 4px;
+    background-color: #ffffff;
+    margin: 10px;
+    position: relative;
+    min-height: 10vh;
+    padding: 10px;
+}
+
+.articleTitle{
+    color: #3b6b9c;
+    font-weight: bold;
+    border-bottom: 1px solid #e7e7e7;
+    margin-bottom: 5px;
+}
+.articleTitle a{
+    color: #3b6b9c;
+    cursor: pointer;
+}
+
+.articleMeta{
+    border-top: 1px solid #e7e7e7;
+    display: inline-flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 5px 0;
+}
+.tags{
+    width: 50%;
+}
+.tags span{
+    margin: 0 1%;
+}
+.tags a{
+    cursor: pointer;
+}

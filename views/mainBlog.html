@@ -1,0 +1,33 @@
+<head>
+    <link rel="stylesheet" href="bootstrap/mainBlogStyle.css">
+</head>
+<body>
+    <div class="col-sm-8 col-md-offset-1 col-md-6" id="articleContainer"
+            ng-controller="mainBlogCtrl as mbc">
+        <div class="article" ng-repeat="info in mbc.returnArticleList()">
+            <div class="articleTitle">
+                <a ng-click="">
+                    {{info.title}}
+                </a>
+            </div>
+            <div class="articleText">
+                {{info.summary}}
+            </div>
+            <div class="articleMeta">
+                <div class="tags">
+                    <span ng-repeat="tag in info.tags">
+                        <a ng-click="">
+                            {{tag}}
+                        </a>
+                    </span>
+                </div>
+                <div class="time">
+                    {{info.edited}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <side-nav></side-nav>
+    </div>
+</body>

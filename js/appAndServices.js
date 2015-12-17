@@ -1,4 +1,24 @@
-var app = angular.module("blogApp", []);
+var app = angular.module("blogApp", ["ngRoute"]);
+
+app.config(['$routeProvider',
+    // $routeProvider used to load proper template in index.html
+    function ($routeProvider) {
+        $routeProvider
+            .when("/", {
+                templateUrl: "views/mainBlog.html",
+                controller: "mainBlogCtrl"
+            })
+            .when('/login', {
+                templateUrl: 'views/login.html'
+            })
+            .when('/register', {
+                templateUrl: 'views/register.html'
+            })
+            .otherwise({
+                redirectTo: '/login'
+            });
+    }
+]);
 
 app.config(function($httpProvider){
     $httpProvider.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
@@ -29,7 +49,7 @@ app.service("userService", function($http, $log, $q){
             if(response.data.success){
                 defer.resolve(response.data.data);
             }else{
-                defer.resolve(response.data);
+                defer.reject(response.data);
             }
         }, function(response){
             //failed response
@@ -53,7 +73,7 @@ app.service("userService", function($http, $log, $q){
             if(response.data.success){
                 defer.resolve(response.data.data);
             }else{
-                defer.resolve(response.data);
+                defer.reject(response.data);
             }
         }, function(response){
             //failed response
@@ -77,7 +97,7 @@ app.service("userService", function($http, $log, $q){
             if(response.data.success){
                 defer.resolve(response.data.data);
             }else{
-                defer.resolve(response.data);
+                defer.reject(response.data);
             }
         }, function(response){
             //failed response
@@ -101,7 +121,7 @@ app.service("userService", function($http, $log, $q){
             if(response.data.success){
                 defer.resolve(response.data.data);
             }else{
-                defer.resolve(response.data);
+                defer.reject(response.data);
             }
         }, function(response){
             //failed response
@@ -125,7 +145,7 @@ app.service("userService", function($http, $log, $q){
             if(response.data.success){
                 defer.resolve(response.data.data);
             }else{
-                defer.resolve(response.data);
+                defer.reject(response.data);
             }
         }, function(response){
             //failed response
@@ -143,11 +163,29 @@ app.service("userService", function($http, $log, $q){
     };
 
     artServ.listArticles = function(data){
+        var defer = $q.defer();
         if(data != undefined) {
             //data {tag[optional], count[optional], auth_token[optional]}
             data = paramString(data);
+        } else{
+            $http({
+                url: "http://s-apis.learningfuze.com/blog/list.json",
+                method: "post"
+            }).then(function(response){
+                //successful response
+                console.log("success", response);
+                if(response.data.success){
+                    defer.resolve(response.data.data);
+                }else{
+                    defer.reject(response.data);
+                }
+            }, function(response){
+                //failed response
+                $log.error(response);
+                defer.reject("Unable to connect to server at this time");
+            });
+            return defer.promise;
         }
-        var defer = $q.defer();
         $http({
             url: "http://s-apis.learningfuze.com/blog/list.json",
             method: "post",
@@ -158,7 +196,7 @@ app.service("userService", function($http, $log, $q){
             if(response.data.success){
                 defer.resolve(response.data.data);
             }else{
-                defer.resolve(response.data);
+                defer.reject(response.data);
             }
         }, function(response){
             //failed response
@@ -182,7 +220,7 @@ app.service("userService", function($http, $log, $q){
             if(response.data.success){
                 defer.resolve(response.data.data);
             }else{
-                defer.resolve(response.data);
+                defer.reject(response.data);
             }
         }, function(response){
             //failed response
@@ -206,7 +244,7 @@ app.service("userService", function($http, $log, $q){
             if(response.data.success){
                 defer.resolve(response.data.data);
             }else{
-                defer.resolve(response.data);
+                defer.reject(response.data);
             }
         }, function(response){
             //failed response
@@ -230,7 +268,7 @@ app.service("userService", function($http, $log, $q){
             if(response.data.success){
                 defer.resolve(response.data.data);
             }else{
-                defer.resolve(response.data);
+                defer.reject(response.data);
             }
         }, function(response){
             //failed response
@@ -254,7 +292,7 @@ app.service("userService", function($http, $log, $q){
             if(response.data.success){
                 defer.resolve(response.data.data);
             }else{
-                defer.resolve(response.data);
+                defer.reject(response.data);
             }
         }, function(response){
             //failed response
