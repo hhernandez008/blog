@@ -45,6 +45,8 @@ foreach($_POST as $key=>$value)
 		array_push($response['errors'], $input[$key]['regex_error']);
 	}
 }
+
+// Check for empty auth_token
 $empty_auth_token = strlen($input['auth_token']['value']) == 0;
 
 if (empty($response['errors']))

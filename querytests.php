@@ -48,6 +48,10 @@ function didEntryExpire($key, $value, $duration)
 				return true;
 		}
 	}
+	else
+	{
+		return true;
+	}
 	return false;
 }
 ?>
