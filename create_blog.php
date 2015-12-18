@@ -29,7 +29,7 @@ $duration = 600;
 //Where do we get $duration
 if (doesEntryExist('auth_token', $auth_token) && !didEntryExpire('auth_token', $auth_token, $duration)) {
     $query_info_flags = "INSERT INTO `blog_infos`('uid',`time_created`, `status_flags`) VALUES ((SELECT id FROM logins WHERE auth_token = '{$auth_token}'),'{$time}', '{$public}')";
-    $info_and_flags = mysqli_query($conn, $query_title_flags);
+    $info_and_flags = mysqli_query($conn, $query_info_flags);
 
     if (mysqli_affected_rows($info_and_flags) > 0) {
         $biid = mysqli_insert_id($conn);

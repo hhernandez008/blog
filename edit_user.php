@@ -29,7 +29,7 @@ if (doesEntryExist('auth_token', $auth_token) && !didEntryExpire('auth_token', $
     if (!empty($username)) {
         if (testValidEntry('display_name', $username)) {
             $fixed_username = makeSafeString($username);
-            $username_query = "UPDATE `users` SET `username` = '{$fixed_username}' WHERE id = $id";
+            $username_query = "UPDATE `users` SET `username` = '{$fixed_username}' WHERE id = '{$id}'";
             mysqli_query($conn, $username_query);
             if (mysqli_affected_rows($conn)) {
                 $response['success'] = true;
