@@ -2,6 +2,7 @@
 //require_once('');
 require('regextests.php');
 require('security.php');
+require('querytests.php');
 
 $_SESSION = $_POST; //?
 $id = (int)$_POST['id']; //$_POST instead?

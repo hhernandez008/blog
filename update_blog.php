@@ -12,6 +12,7 @@ $response = [
     'data' => [],
     'errors' => []
 ];
+$auth_token = $_POST['auth_token'];
 $duration = 600;
 //need info for $duration.
 if (doesEntryExist('auth_token', $auth_token) && !didEntryExpire('auth_token', $auth_token, $duration)) {

@@ -1,6 +1,7 @@
 <?php
+require('querytests.php');
 
-$delete_blog_entries = $_POST['array'];
+$delete_blog_entries = $_POST['blog_ids'];
 $auth_token = $_POST['token'];
 $time = time();
 $response = [
