@@ -3,7 +3,7 @@
 </head>
 <body>
     <div class="col-sm-8 col-md-offset-1 col-md-6" id="articleContainer">
-        <div class="article" ng-repeat="info in blc.returnArticleList()">
+        <div class="article" ng-repeat="info in sc.returnSearchResponse()">
             <div class="articleTitle">
                 <a href="#/full-article" ng-click="mc.readFullArticle(info.id)">
                     {{info.title}}
@@ -20,6 +20,9 @@
                         </a>
                     </span>
                 </div>
+                <div class="time">
+                    {{info.edited}}
+                </div>
             </div>
         </div>
     </div>
@@ -27,4 +30,4 @@
         <!-- Add the side navigation template -->
         <side-nav></side-nav>
     </div>
-
+</body>

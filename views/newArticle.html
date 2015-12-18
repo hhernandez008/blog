@@ -1,0 +1,32 @@
+<head>
+    <link rel="stylesheet" href="bootstrap/newArticleStyle.css">
+</head>
+<body>
+    <div class="row mainContent">
+        <div class="col-sm-8 col-md-offset-1 col-md-6" id="articleContainer">
+            <div class="articleTitle">
+                Title:
+                <input ng-model="nac.title" type="text">
+            </div>
+            <div class="articleText">
+                <textarea ng-model="nac.text" placeholder="Article text..."></textarea>
+            </div>
+            <div class="tags">
+                Tags:
+                <input ng-model="nac.tags" type="text" placeholder="Separate tags with commas.">
+            </div>
+            <div class="buttons">
+                <input type="radio" ng-model="nac.viewable.name" value="public">Public
+                <input type="radio" ng-model="nac.viewable.name" value="private">Private
+                <button type="button" class="btn btn-primary"
+                        ng-click="nac.postArticle()">Post</button>
+                <button type="button" class="btn btn-danger"
+                        ng-click="nac.title = ''; nac.text = ''; nac.tags='';">Cancel</button>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <side-nav></side-nav>
+        </div>
+    </div>
+
+</body>
