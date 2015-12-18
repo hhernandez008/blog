@@ -3,17 +3,15 @@
 require('regextests.php');
 require('security.php');
 
-session_start();
-$conn = mysqli_connect('localhost', 'root', 'root', 'lfz_blog');
 $_SESSION = $_POST; //?
 $id = (int)$_POST['id']; //$_POST instead?
-//$id = 1; //test value
+
 $username = $_POST['username'];
 $email = $_POST['email'];
 $password = $_POST['password'];
 $profile_img = $_POST['profile_img'];
 
-$auth_token = $_SESSION['auth_token'];
+$auth_token = $_POST['auth_token'];
 $response = [
     'success' => false,
     'data' => [],

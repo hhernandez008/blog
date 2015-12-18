@@ -1,7 +1,7 @@
 <?php
 
 $delete_blog_entries = $_POST['array'];
-$auth_token = $_SESSION['token'];
+$auth_token = $_POST['token'];
 $time = time();
 $response = [
     'success' => false,
