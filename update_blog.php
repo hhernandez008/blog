@@ -7,7 +7,11 @@ $text = $_POST['text'];
 $tags = $_POST['tags'];
 $public = $_POST['public']; //is this where situation_flags comes in?
 $time = time();
-$response =[];
+$response = [
+    'success' => false,
+    'data' => [],
+    'errors' => []
+];
 
 //need info for $duration.
 if (doesEntryExist('auth_token', $auth_token) && !didEntryExpire('auth_token', $auth_token, $duration)) {
