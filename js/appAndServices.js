@@ -65,7 +65,7 @@ app.service("userService", function ($http, $log, $q) {
         data = paramString(data);
         var defer = $q.defer();
         $http({
-            url: "https://edenprime.cloudapp.net/blog/login_user.php",
+            url: "http://edenprime.cloudapp.net/blog/login_user.php",
             method: "post",
             data: data
         }).then(function (response) {
@@ -92,7 +92,7 @@ app.service("userService", function ($http, $log, $q) {
         data = paramString(data);
         var defer = $q.defer();
         $http({
-            url: "https://edenprime.cloudapp.net/blog/register_user.php",
+            url: "http://edenprime.cloudapp.net/blog/register_user.php",
             method: "post",
             data: data
         }).then(function (response) {
@@ -200,7 +200,7 @@ app.service("userService", function ($http, $log, $q) {
             data = paramString(data);
         } else {
             $http({
-                url: "https://edenprime.cloudapp.net/blog/list_blogs.php",
+                url: "http://edenprime.cloudapp.net/blog/list_blogs.php",
                 method: "post"
             }).then(function (response) {
                 //successful response
@@ -218,7 +218,7 @@ app.service("userService", function ($http, $log, $q) {
             return defer.promise;
         }
         $http({
-            url: "https://edenprime.cloudapp.net/blog/list_blogs.php",
+            url: "http://edenprime.cloudapp.net/blog/list_blogs.php",
             method: "post",
             data: data
         }).then(function (response) {
@@ -242,7 +242,7 @@ app.service("userService", function ($http, $log, $q) {
         data = paramString(data);
         var defer = $q.defer();
         $http({
-            url: "https://edenprime.cloudapp.net/blog/read_one_blog.php",
+            url: "http://edenprime.cloudapp.net/blog/read_one_blog.php",
             method: "post",
             data: data
         }).then(function (response) {

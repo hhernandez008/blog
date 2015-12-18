@@ -12,11 +12,13 @@ app.controller("registrationCtrl", function(userService, $location) {
             userService.registerUser(self.data)
                 .then(function(response){
                         console.log(response);
-                        self.data = {};
                         self.registrationComplete = true;
-                        var loginInfo = {password: response.password, email: response.email};
-                        userService.loginUser(loginInfo);
-                        $location.path("/");
+                        var loginInfo = {password: self.data.password, email: response.email};
+                        userService.loginUser(loginInfo).then(function(){
+                                self.data = {};
+                                $location.path("/");
+                                self.registrationComplete = false;
+                        });
                 });
         };
 });
