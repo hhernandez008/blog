@@ -79,8 +79,8 @@ if (empty($response['errors']))
 		$extra_queries =
 			[
 				($empty_tag ? "" : " AND INSTR(bt.tags, (SELECT CONCAT(SPACE(1), (SELECT tags.id FROM tags WHERE tag='" . $input['tag']['value'] . "'), ',')))!=0"),
-				($empty_auth_token ? " AND bi.status_flags&&" . $PUBLIC_BLOG . "=" . $PUBLIC_BLOG : " AND (SELECT logins.uid FROM logins WHERE logins.auth_token='" . $input['auth_token']['value'] . "')=bi.uid"),
-				//(" AND bi.status_flags&&" . $DELETED_BLOG . "!=" . $DELETED_BLOG),
+				($empty_auth_token ? " AND (bi.status_flags&&" . $PUBLIC_BLOG . ")=" . $PUBLIC_BLOG : " AND (SELECT logins.uid FROM logins WHERE logins.auth_token='" . $input['auth_token']['value'] . "')=bi.uid"),
+				(" AND (bi.status_flags&&" . $DELETED_BLOG . ")!=" . $DELETED_BLOG),
 				(" ORDER BY bi.time_created DESC"),
 				($empty_count ? "" : " LIMIT " . $input['count']['value'])
 			];

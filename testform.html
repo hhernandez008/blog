@@ -18,7 +18,7 @@
 						email: $('#email').val(),
 						display_name: $('#username').val(),
 						password: $('#password').val()
-					}, 
+					},
 					success: function(result)
 					{
 						$('#feedback').html('');
@@ -112,7 +112,7 @@
 				{
 					method: 'POST',
 					dataType: 'json',
-					url: 'list_blogs.php', //'http://edenprime.cloudapp.net/blog/read_one_blog.php',
+					url: 'http://edenprime.cloudapp.net/blog/list_blogs.php',
 					data:
 					{
 						tag: $('#tag').val(),
@@ -133,7 +133,7 @@
 								$('#feedback').append($('<h1>').text(result.data[i].title));
 								$('#feedback').append($('<h2>').text('written by ' + result.data[i].uid));
 								$('#feedback').append($('<h3>').text('This blog is' + (result.data[i].public ? ' ' : ' NOT ') + 'public.'));
-								$('#feedback').append($('<p>').text(result.data[i].text));
+								$('#feedback').append($('<p>').text(result.data[i].summary));
 								$('#feedback').append($('<p>').text('Tags: '));
 								for (var j = 0; j < result.data[i].tags.length; j++)
 									$('#feedback').append($('<span>').text(result.data[i].tags[j] + ','));
@@ -151,16 +151,16 @@
 				});
     		});
     	});
-	</script>
+    </script>
 </head>
 <body>
     <p>REGISTER</p>
-	Email: <input type="email" name="email" id="email"/><br />
-	Username: <input type="text" name="display_name" id="username"/><br />
-	Password: <input type="password" name="password" id="password"/><br />
+    Email: <input type="email" name="email" id="email" /><br />
+    Username: <input type="text" name="display_name" id="username" /><br />
+    Password: <input type="password" name="password" id="password" /><br />
     <button id="register">REGISTER</button>
     <br />
-        
+
     <hr />
     <p>LOGIN</p>
     Email: <input type="email" name="email" id="l_email" /><br />

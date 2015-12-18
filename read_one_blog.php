@@ -63,9 +63,9 @@ if (empty($response['errors']))
 			FROM blog_infos as bi, blog_texts as bt
 			WHERE bi.id=" . $input['id']['value'] . " AND bi.id=bt.biid";
 		if ($empty_auth_token)
-			$query = $query . " AND bi.status_flags&&" . $PUBLIC_BLOG . "=" . $PUBLIC_BLOG;
+			$query = $query . " AND (bi.status_flags&&" . $PUBLIC_BLOG . ")=" . $PUBLIC_BLOG;
 
-		//$query = $query . " AND bi.status_flags&&" . $DELETED_BLOG . "!=" . $DELETED_BLOG;
+		$query = $query . " AND (bi.status_flags&&" . $DELETED_BLOG . ")!=" . $DELETED_BLOG;
 		$result = mysqli_query($conn, $query);
 
 		if ($result)

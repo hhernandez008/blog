@@ -71,7 +71,7 @@
 				{
 					method: 'POST',
 					dataType: 'json',
-					url: 'read_one_blog.php',//'http://edenprime.cloudapp.net/blog/read_one_blog.php',
+					url: 'http://edenprime.cloudapp.net/blog/read_one_blog.php',
 					data:
 					{
 						id: $('#blog_id').val(),
@@ -112,7 +112,7 @@
 				{
 					method: 'POST',
 					dataType: 'json',
-					url: 'list_blogs.php', //'http://edenprime.cloudapp.net/blog/read_one_blog.php',
+					url: 'http://edenprime.cloudapp.net/blog/list_blogs.php',
 					data:
 					{
 						tag: $('#tag').val(),
