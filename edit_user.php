@@ -29,15 +29,15 @@ if (doesEntryExist('auth_token', $auth_token) && !didEntryExpire('auth_token', $
     if (!empty($username)) {
         if (testValidEntry('display_name', $username)) {
             $fixed_username = makeSafeString($username);
-            $username_query = "UPDATE `users` SET `username` = '{$fixed_username}' WHERE id = $id";
+            $username_query = "UPDATE `users` SET `username` = '{$fixed_username}' WHERE id = '{$id}'";
             mysqli_query($conn, $username_query);
             if (mysqli_affected_rows($conn)) {
                 $response['success'] = true;
-                $response['data']['id'] = $id;
+                //$response['data']['id'] = $id;
             }
         } else {
             $response['success'] = false;
-            $response['errors']['username'] = 'not a valid username.';
+            $response['errors']['name'] = 'not a valid username.';
         }
     }
     //password regex
@@ -45,11 +45,11 @@ if (doesEntryExist('auth_token', $auth_token) && !didEntryExpire('auth_token', $
         if (testValidEntry('password', $password)) {
             $fixed_password = makeSafeString($password);
             $encrypted_password = sha1($fixed_password);
-            $password_query = "UPDATE `users` SET `password` = '{$encrypted_password}' WHERE id = $id";
+            $password_query = "UPDATE `users` SET `password` = '{$encrypted_password}' WHERE id = '{$id}'";
             mysqli_query($conn, $password_query);
             if (mysqli_affected_rows($conn)) {
                 $response['success'] = true;
-                $response['data']['id'] = $id;
+                //$response['data']['id'] = $id;
             }
         } else {
             $response['errors']['password'] = 'not a valid password.';
@@ -68,9 +68,11 @@ if (doesEntryExist('auth_token', $auth_token) && !didEntryExpire('auth_token', $
 
         if (mysqli_num_rows($rows) > 0) {
             while ($row = mysqli_fetch_assoc($rows)) {
-                $output[] = $row;
+                $response['data']['id'] = $row['id'];
+                $response['data']['name'] = $row['username'];
+                $response['data']['email'] = $row['email'];
+                $response['data']['last_login'] = $row['login_timestamp'];
             }
-            $response['data'] = $output;
         }
     }
 } else{
