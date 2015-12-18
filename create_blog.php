@@ -15,13 +15,6 @@ $response = [
     'errors' => []
 ];
 
-//$rights = [
-//    'create' => 1,
-//    'read' => 2,
-//    'update' => 4,
-//    'delete' => 8
-//];
-
 $public_true = 1;
 $time = time();
 $duration = 600;
@@ -55,7 +48,7 @@ if (doesEntryExist('auth_token', $auth_token) && !didEntryExpire('auth_token', $
             }
         }
     } else {
-        //$response['success'] = false;
+        $response['success'] = false;
         $response['errors']['blog_text'] = 'there was an error with the blog texts, time_created not stored.';
     }
 } else {
