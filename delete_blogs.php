@@ -8,7 +8,7 @@ $response = [
     'data' => [],
     'errors' => []
 ];
-
+$duration = 600;
 if (doesEntryExist('auth_token', $auth_token) && !didEntryExpire('auth_token', $auth_token, $duration)) {
 
     foreach ($delete_blog_entries as $key) {

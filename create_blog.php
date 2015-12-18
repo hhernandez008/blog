@@ -23,7 +23,7 @@ $response = [
 
 $public_true = 1;
 $time = time();
-
+$duration = 600;
 //use the function in the if statements instead.
 //Where do we get $duration
 if (doesEntryExist('auth_token', $auth_token) && !didEntryExpire('auth_token', $auth_token, $duration)) {

@@ -12,7 +12,7 @@ $response = [
     'data' => [],
     'errors' => []
 ];
-
+$duration = 600;
 //need info for $duration.
 if (doesEntryExist('auth_token', $auth_token) && !didEntryExpire('auth_token', $auth_token, $duration)) {
     $query_update_blog_info = "UPDATE blog_texts, blog_infos

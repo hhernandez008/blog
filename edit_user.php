@@ -2,6 +2,7 @@
 //require_once('');
 require('regextests.php');
 require('security.php');
+
 session_start();
 $conn = mysqli_connect('localhost', 'root', 'root', 'lfz_blog');
 $_SESSION = $_POST; //?
@@ -19,7 +20,7 @@ $response = [
     'errors' => []
 ];
 
-$duration = '';
+$duration = 600;
 
 if (doesEntryExist('auth_token', $auth_token) && !didEntryExpire('auth_token', $auth_token, $duration)) {
     $response['success'] = true;
