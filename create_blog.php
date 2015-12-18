@@ -45,7 +45,7 @@ if (doesEntryExist('auth_token', $auth_token) && !didEntryExpire('auth_token', $
         //nothing else required?
     }
     if (mysqli_affected_rows($blog_text) > 0) {
-        $time_query = "SELECT `time_created` FROM `blog_infos` WHERE `biid` = '{$biid}'";
+        $time_query = "SELECT `time_created` FROM `blog_infos` WHERE `id` = '{$biid}'";
         $time_row = mysqli_query($conn, $time_query);
         if (mysqli_num_rows($time_rows) > 0) {
             while ($row = mysqli_fetch_assoc($time_row)) {
