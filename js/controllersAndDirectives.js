@@ -1,6 +1,6 @@
 var app = angular.module("blogApp");
 
-app.controller("mainCtrl", function(articleReadService, articleEditService, userService, dummyData){
+app.controller("mainCtrl", function(articleReadService, articleEditService, userService){
     this.readFullArticle = function(data){
         //console.log("readFullArt", data);
         if(userService.authToken.length > 0){
@@ -40,7 +40,7 @@ app.controller("mainCtrl", function(articleReadService, articleEditService, user
                 articleReadService.searchResponse.push(response);
             });
     };
-}).controller("blogListCtrl", function (articleReadService, articleEditService, userService, dummyData) {
+}).controller("blogListCtrl", function (articleReadService, articleEditService, userService) {
     var blc = this;
     //store the full array of articles in the article service
     articleReadService.articleList = [];
@@ -69,21 +69,51 @@ app.controller("mainCtrl", function(articleReadService, articleEditService, user
         return articleReadService.articleList;
     };
 
-}).controller("fullArticleCtrl", function (articleReadService, articleEditService, userService, dummyData) {
+}).controller("fullArticleCtrl", function (articleReadService, articleEditService, userService) {
         this.currentArticle = articleReadService.returnCurrentArticle;
-}).controller("searchCtrl", function(articleReadService, articleEditService, userService, dummyData){
+}).controller("searchCtrl", function(articleReadService, articleEditService, userService){
     //for view to display article list array
     this.returnSearchResponse = function(){
         console.log(articleReadService.searchResponse);
         return articleReadService.searchResponse;
     };
 }).controller("newArticleCtrl", function(articleEditService, userService){
+    var nac = this;
+    nac.title = '';
+    nac.text = '';
+    nac.tags = '';
+    nac.viewable = {name: "private"};
 
+    var createTagArray = function(){
+        var tagArray = [];
+        tagArray.push(nac.tags);
+        return tagArray;
+    };
+
+    this.postArticle = function(){
+        var articleInfo = {};
+        articleInfo.title = nac.title;
+        articleInfo.text = nac.text;
+        articleInfo.tags = createTagArray();
+        articleInfo.public = (nac.viewable.name == "public");
+        articleInfo.auth_token = userService.authToken;
+        articleEditService.createArticle(articleInfo)
+            .then(function(response){
+                nac.title = '';
+                nac.text = '';
+                nac.tags = '';
+                nac.viewable = {name: "private"};
+            });
+    }
 });
 
 
-app.controller("sideNavCtrl", function (articleReadService, articleEditService, userService, dummyData) {
+app.controller("sideNavCtrl", function (articleReadService, articleEditService, userService) {
     var snc = this;
+    snc.loggedIn = function(){
+        return (userService.authToken != '' && userService.authToken != undefined);
+    };
+    snc.user = userService.username;
 
     articleReadService.listArticles().then(function (response) {
         if(response.length > 5){
@@ -103,7 +133,8 @@ app.controller("sideNavCtrl", function (articleReadService, articleEditService, 
         var articles = articleReadService.articleList;
         var tags = articleReadService.tags;
         for(var i = 0; i < articles.length; i++){
-            if(i == 0 && tags.length < 1){
+            if(i == 0 && (tags.length < 1 || tags.length == undefined)){
+
                 for(tag in articles[i].tags){
                     tags.push(articles[i].tags[tag]);
                 }

@@ -1,5 +1,10 @@
 <div id="sideNav">
-    <div class="search">
+    <div id="userInfo" ng-show="snc.loggedIn()">
+        <h2> {{snc.user}} </h2>
+        <a class="btn btn-success" href="#/new">New Article</a>
+
+    </div>
+    <!--<div class="search">
         <div class="input-group">
             <input type="text" class="form-control" placeholder="Search Articles...">
                         <span class="input-group-btn">
@@ -8,7 +13,7 @@
                             </button>
                         </span>
         </div>
-    </div>
+    </div>-->
     <!-- List the last 5 created articles -->
     <div class="shortList">
         <p class="sectionHead">
