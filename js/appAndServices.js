@@ -28,6 +28,11 @@ app.config(['$routeProvider',
                 controller: "searchCtrl",
                 controllerAs: "sc"
             })
+            .when("/new", {
+                templateUrl: "views/newArticle.html",
+                controller: "newArticleCtrl",
+                controllerAs: "nac"
+            })
             .otherwise({
                 redirectTo: '/'
             });
@@ -186,7 +191,7 @@ app.service("userService", function($http, $log, $q){
             data = paramString(data);
         } else{
             $http({
-                url: "http://s-apis.learningfuze.com/blog/list.json",
+                url: "http://edenprime.cloudapp.net/blog/list_blogs.php",
                 method: "post"
             }).then(function(response){
                 //successful response
@@ -228,7 +233,7 @@ app.service("userService", function($http, $log, $q){
         data = paramString(data);
         var defer = $q.defer();
         $http({
-            url: "http://s-apis.learningfuze.com/blog/read.json",
+            url: "http://edenprime.cloudapp.net/blog/read_one_blog.php",
             method: "post",
             data: data
         }).then(function(response){

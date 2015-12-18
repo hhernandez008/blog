@@ -50,17 +50,15 @@ app.controller("mainCtrl", function(articleReadService, articleEditService, user
         console.log("list articles passed user_token");
         data = { auth_token: userService.authToken };
         articleReadService.listArticles(data).then(function (response) {
-            articleReadService.articleList = dummyData.articleList;
-            //PUSH to articleList so saved in array; WAS AN OBJECT
-            //articleService.articleList.push(response);
+            console.log(response);
+            articleReadService.articleList = response;
         }, function(response){
             console.log("list articles failed: ", response);
         });
     }else {
         articleReadService.listArticles().then(function (response) {
-            articleReadService.articleList = dummyData.articleList;
-            //PUSH to articleList so saved in array; WAS AN OBJECT
-            //articleService.articleList.push(response);
+            console.log(response);
+            articleReadService.articleList = response;
         }, function (response) {
             console.log("list articles failed: ", response);
         });
@@ -79,6 +77,8 @@ app.controller("mainCtrl", function(articleReadService, articleEditService, user
         console.log(articleReadService.searchResponse);
         return articleReadService.searchResponse;
     };
+}).controller("newArticleCtrl", function(articleEditService, userService){
+
 });
 
 
@@ -86,7 +86,6 @@ app.controller("sideNavCtrl", function (articleReadService, articleEditService, 
     var snc = this;
 
     articleReadService.listArticles().then(function (response) {
-        response = dummyData.articleList;
         if(response.length > 5){
             for(var i = 0; i <= 5; i++){
                 snc.lastFiveArticles.push(response[i]);

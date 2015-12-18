@@ -2,48 +2,48 @@
     <link rel="stylesheet" href="bootstrap/articleStyle.css">
 </head>
 <body>
-        <div class="row neighborNav">
-            <div class="previous">
-                <a href="">
-                    <button type="button" class="btn btn-default">
-                        <span class="glyphicon glyphicon-menu-left"></span>
-                            Previous
-                    </button>
-                </a>
+    <!--<div class="row neighborNav">
+        <div class="previous">
+            <a href="">
+                <button type="button" class="btn btn-default">
+                    <span class="glyphicon glyphicon-menu-left"></span>
+                        Previous
+                </button>
+            </a>
+        </div>
+        <div class="next">
+            <a href="">
+                <button type="button" class="btn btn-default">
+                    Next
+                    <span class="glyphicon glyphicon-menu-right"></span>
+                </button>
+            </a>
+        </div>
+    </div>-->
+    <div class="row mainContent">
+        <div class="col-sm-8 col-md-offset-1 col-md-6" id="articleContainer"
+                ng-repeat="info in fac.currentArticle()">
+            <h3 class="articleTitle">
+                {{info.title}}
+            </h3>
+            <div class="article">
+                <p ng-bind-html="info.text"></p>
             </div>
-            <div class="next">
-                <a href="">
-                    <button type="button" class="btn btn-default">
-                        Next
-                        <span class="glyphicon glyphicon-menu-right"></span>
-                    </button>
-                </a>
+            <!--<div class="time">
+                Last Edited: {{info.edited}}
+            </div>-->
+            <div class="tags">
+                Tags:
+                <span ng-repeat="tag in info.tags">
+                    <a href="#/search" ng-click="mc.tagSearch(tag)">
+                        {{tag}}
+                    </a>
+                </span>
             </div>
         </div>
-        <div class="row mainContent">
-            <div class="col-sm-8 col-md-offset-1 col-md-6" id="articleContainer"
-                    ng-repeat="info in fac.currentArticle()">
-                <h3 class="articleTitle">
-                    {{info.title}}
-                </h3>
-                <div class="article">
-                    <p ng-bind-html="info.text"></p>
-                </div>
-                <div class="time">
-                    Last Edited: {{info.edited}}
-                </div>
-                <div class="tags">
-                    Tags:
-                    <span ng-repeat="tag in info.tags">
-                        <a href="#/search" ng-click="mc.tagSearch(tag)">
-                            {{tag}}
-                        </a>
-                    </span>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <side-nav></side-nav>
-            </div>
+        <div class="col-sm-4">
+            <side-nav></side-nav>
         </div>
+    </div>
 
 </body>
