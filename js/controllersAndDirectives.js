@@ -46,7 +46,7 @@ app.controller("sideNavCtrl", function (articleService, userService, dummyData) 
     snc.tagList = function(){
         var articles = articleService.articleList;
         //articles[0].tags = ["cat", "blog", "fun"]
-        for(var i = 0; i < articles.length; i++){
+        for(var i = 0; i < articles.length; i++) {
             if(i == 0){
                 for(tag in articles[i].tags){
                     snc.tags.push(articles[i].tags[tag]);
@@ -71,39 +71,4 @@ app.controller("sideNavCtrl", function (articleService, userService, dummyData) 
         controller: "sideNavCtrl",
         controllerAs: "snc"
     }
-});
-
-app.controller("loginCtrl", function(userService, dummyData) {
-        var self = this;
-        self.email = '';
-        self.password = '';
-        self.submitLogin = function() {
-            userService.loginUser(self.data);
-        };
-
-});
-
-app.controller("registrationCtrl", function(userService, dummyData) {
-        var self = this;
-        self.fName = '';
-        self.lName = '';
-        self.username = '';
-        self.password = '';
-        self.email = '';
-        self.submitReg = function() {
-            userService.registerUser(self.data);
-        };
-});
-
-app.controller("profileCtrl", function(userService, dummyData) {
-        var self = this;
-        self.fName = '';
-        self.lName = '';
-        self.username = '';
-        self.password = '';
-        self.verify_pw = '';
-        self.email = '';
-        self.sendNewInfo = function() {
-            userService.editUser(self.data);
-        }
 });

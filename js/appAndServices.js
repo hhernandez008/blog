@@ -18,7 +18,7 @@ app.config(['$routeProvider',
             })
             .when('/edit-profile', {
                 templateUrl: 'views/userEdit.html',
-                controller: 'profileCtrl'
+                controller: 'userEditCtrl'
             })
             .otherwise({
                 redirectTo: '/login'
@@ -53,6 +53,8 @@ app.service("userService", function ($http, $log, $q) {
             //successful response
             console.log("success", response);
             if (response.data.success) {
+                useServ.uid = response.data.data.uid;
+                useServ.auth_token = response.data.data.auth_token;
                 defer.resolve(response.data.data);
             } else {
                 defer.reject(response.data);
@@ -64,7 +66,6 @@ app.service("userService", function ($http, $log, $q) {
         });
         return defer.promise;
     };
-
     useServ.registerUser = function (data) {
         //data {email, display_name, password}
         data = paramString(data);
