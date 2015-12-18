@@ -59,9 +59,9 @@ if (empty($response['errors']))
 	{
 		// if $empty_auth_token, SQL for public mask for status flags.
 		$query =
-			"SELECT bi.id, bi.uid, bi.time_created, bi.status_flags, bt.title, bt.text, bt.tags
-			FROM blog_infos as bi, blog_texts as bt
-			WHERE bi.id=" . $input['id']['value'] . " AND bi.id=bt.biid";
+			"SELECT bi.id, bi.uid, users.username, bi.time_created, bi.status_flags, bt.title, bt.text, bt.tags
+			FROM blog_infos as bi, blog_texts as bt, users
+			WHERE bi.uid=users.id AND bi.id=" . $input['id']['value'] . " AND bi.id=bt.biid";
 		if ($empty_auth_token)
 			$query = $query . " AND (bi.status_flags&&" . $PUBLIC_BLOG . ")=" . $PUBLIC_BLOG;
 
@@ -77,6 +77,7 @@ if (empty($response['errors']))
 				{
 					$response['data']['id'] = $row['id'];
 					$response['data']['uid'] = $row['uid'];
+					$response['data']['username'] = $row['username'];
 					$response['data']['ts'] = $row['time_created'];
 					$response['data']['title'] = $row['title'];
 					$response['data']['text'] = $row['text'];

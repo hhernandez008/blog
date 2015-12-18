@@ -72,9 +72,9 @@ if (empty($response['errors']))
 		// if no count set, then list all blogs
 		// List by timestamp created, descending
 		$query =
-			"SELECT DISTINCT(bi.id), bi.uid, bi.time_created, bt.title, bt.text, bt.tags, bi.status_flags
-			FROM logins, blog_infos as bi, blog_texts as bt, tags
-			WHERE bi.id=bt.biid";
+			"SELECT DISTINCT(bi.id), bi.uid, users.username, bi.time_created, bt.title, bt.text, bt.tags, bi.status_flags
+			FROM logins, blog_infos as bi, blog_texts as bt, tags, users
+			WHERE bi.uid=users.id AND bi.id=bt.biid";
 
 		$extra_queries =
 			[
@@ -98,6 +98,7 @@ if (empty($response['errors']))
 				[
 					'id'=>$row['id'],
 					'uid'=>$row['uid'],
+					'username'=>$row['username'],
 					'ts'=>$row['time_created'],
 					'title'=>$row['title'],
 					'summary'=>generateSummary($row['text'], 100),
