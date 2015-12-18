@@ -7,7 +7,7 @@ require('helper_functions.php');
 require('querytests.php');
 
 $PUBLIC_BLOG = 1;
-
+$DELETED_BLOG = 128;
 $input =
 	[
 		'id' =>
@@ -35,7 +35,7 @@ $response =
 // Regex tests
 foreach($_POST as $key=>$value)
 {
-	if (gettype($value) == "integer")
+	if ($key == 'id')
 		$input[$key]['value'] = makeSafeInt($value);
 	else
 		$input[$key]['value'] = makeSafeString($value);
@@ -65,6 +65,7 @@ if (empty($response['errors']))
 		if ($empty_auth_token)
 			$query = $query . " AND bi.status_flags&&" . $PUBLIC_BLOG . "=" . $PUBLIC_BLOG;
 
+		//$query = $query . " AND bi.status_flags&&" . $DELETED_BLOG . "!=" . $DELETED_BLOG;
 		$result = mysqli_query($conn, $query);
 
 		if ($result)
@@ -84,28 +85,7 @@ if (empty($response['errors']))
 
 					// Get the tag numbers
 					$tags = strlen($row['tags']) > 0 ? explode(",", $row['tags']) : array();
-					$response['data']['tags'] = array();
-					if (count($tags) > 0)
-					{
-						// Get the tag names.
-						$tag_query = "SELECT * FROM tags WHERE";
-						for ($i = 0; $i < count($tags) - 1; $i++) // Last element is just blank, so ignore it.
-						{
-							if ($i == 0)
-								$tag_query = $tag_query . " id=" . $tags[$i];
-							else
-								$tag_query = $tag_query . " OR id=" . $tags[$i];
-						}
-
-						$tag_result = mysqli_query($conn, $tag_query);
-						if ($tag_result && mysqli_num_rows($tag_result) > 0)
-						{
-							while ($tag_row = mysqli_fetch_assoc($tag_result))
-							{
-								array_push($response['data']['tags'], $tag_row['tag']);
-							}
-						}
-					}
+					$response['data']['tags'] = generateTagsArray($tags);
 				}
 			}
 			else
