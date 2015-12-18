@@ -2,7 +2,7 @@
 require('querytests.php');
 
 $delete_blog_entries = $_POST['blog_ids'];
-$auth_token = $_POST['token'];
+$auth_token = $_POST['auth_token'];
 $time = time();
 $response = [
     'success' => false,
