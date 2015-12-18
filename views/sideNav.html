@@ -21,7 +21,7 @@
         </p>
         <ul>
             <li ng-repeat="title in snc.lastFiveArticles">
-                <a href="#/full-article" ng-click="mc.readFullArticle(info.id)">{{title.title}}</a>
+                <a href="#/full-article" ng-click="mc.readFullArticle(title.id)">{{title.title}}</a>
             </li>
         </ul>
     </div>

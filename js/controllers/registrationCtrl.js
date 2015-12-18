@@ -1,5 +1,5 @@
 var app = angular.module("blogApp");
-app.controller("registrationCtrl", function(userService) {
+app.controller("registrationCtrl", function(userService, $location) {
         var self = this;
         self.data = {};
         self.fName = '';
@@ -11,8 +11,14 @@ app.controller("registrationCtrl", function(userService) {
         self.submitReg = function() {
             userService.registerUser(self.data)
                 .then(function(response){
-                        self.data = {};
+                        console.log(response);
                         self.registrationComplete = true;
+                        var loginInfo = {password: self.data.password, email: response.email};
+                        userService.loginUser(loginInfo).then(function(){
+                                self.data = {};
+                                $location.path("/");
+                                self.registrationComplete = false;
+                        });
                 });
         };
 });

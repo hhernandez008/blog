@@ -73,7 +73,7 @@ app.service("userService", function ($http, $log, $q) {
             console.log("success", response);
             if (response.data.success) {
                 useServ.uid = response.data.data.uid;
-                useServ.auth_token = response.data.data.auth_token;
+                useServ.authToken = response.data.data.auth_token;
                 useServ.username = response.data.data.username;
                 defer.resolve(response.data.data);
             } else {
@@ -218,7 +218,7 @@ app.service("userService", function ($http, $log, $q) {
             return defer.promise;
         }
         $http({
-            url: "http://s-apis.learningfuze.com/blog/list.json",
+            url: "http://edenprime.cloudapp.net/blog/list_blogs.php",
             method: "post",
             data: data
         }).then(function (response) {
@@ -248,6 +248,7 @@ app.service("userService", function ($http, $log, $q) {
         }).then(function (response) {
             //successful response
             console.log("success", response);
+            console.log("response.data.data", response.data.data);
             if (response.data.success) {
                 defer.resolve(response.data.data);
             } else {

@@ -1,4 +1,4 @@
-<div class="col-xs-12 col-sm-offset-4 col-sm-4 jumbotron"
+<div class="col-xs-12 col-sm-offset-4 col-sm-4 jumbotron" id="registration"
    ng-controller="registrationCtrl as rc">
     <form action="#" class="form-signin" name='registration' novalidate ng-hide="rc.registrationComplete">
         <div id="textintro">
@@ -54,5 +54,9 @@
         <p class='registerOption'>or</p>
         <p class='registerOption'><a href="#/login">Login</a></p>
     </form>
-    <h2 ng-show="rc.registrationComplete">Registration Complete</h2>
+    <div id="complete" ng-show="rc.registrationComplete">
+        <h2>Registration Complete</h2>
+        <h4>Redirecting to your home page.</h4>
+    </div>
+
 </div>
