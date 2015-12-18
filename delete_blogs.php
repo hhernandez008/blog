@@ -11,10 +11,12 @@ $response = [
     'errors' => []
 ];
 $duration = 600;
-$deleted = 8;
+$deleted = 128;
+
 if (doesEntryExist('auth_token', $auth_token) && !didEntryExpire('auth_token', $auth_token, $duration)) {
 
     foreach ($delete_blog_entries as $key) {
+        //bitwise $selected_query = "UPDATE blog_infos SET time_deleted = '{$time}', status_flags = '{$deleted}' WHERE blog_infos.id = '{$key}'";
         $selected_query = "UPDATE blog_infos
                             SET time_deleted ='{$time}'
                             WHERE blog_infos.id = '{$key}'";
@@ -28,9 +30,10 @@ if (doesEntryExist('auth_token', $auth_token) && !didEntryExpire('auth_token', $
             }
     }
 
+    //bitwise $not_deleted_query = "SELECT id FROM blog_texts JOIN_blog_infos ON blog_texts.biid = blog_infos.id WHERE status_flags & ($deleted) != '{$deleted}'";
     $not_deleted_query = "SELECT id FROM blog_texts
                           JOIN blog_infos ON blog_texts.biid = blog_infos.id
-                          WHERE time_deleted is NULL";
+                          WHERE time_deleted is NULL"; //bitwise here.
     $rows = mysqli_query($conn, $not_deleted_query);
 
     if (mysqli_num_rows($rows) > 0) {
