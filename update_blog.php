@@ -1,5 +1,6 @@
 <?php
 require('querytests.php');
+require('mysql_connect.php');
 
 $biid = $_POST['biid']; //blog id;
 $title = $_POST['title'];

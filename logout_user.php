@@ -2,6 +2,7 @@
 session_start();
 $auth_token = $_SESSION['auth_token'];
 $response = [];
+require('mysql_connect.php');
 if ( isset( $_COOKIE[session_name()] ) )
     setcookie( session_name(), '', time()-3600, '/' );
 session_unset();

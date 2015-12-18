@@ -1,5 +1,6 @@
 <?php
 require('querytests.php');
+require('mysql_connect.php');
 
 $delete_blog_entries = $_POST['blog_ids'];
 $auth_token = $_POST['auth_token'];

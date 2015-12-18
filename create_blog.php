@@ -1,5 +1,6 @@
 <?php
 require('querytests.php');
+require('mysql_connect.php');
 
 $uid = $_POST['uid']; //uid.
 $title = $_POST['title'];

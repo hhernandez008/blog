@@ -3,6 +3,7 @@
 require('regextests.php');
 require('security.php');
 require('querytests.php');
+require('mysql_connect.php');
 
 $_SESSION = $_POST; //?
 $id = (int)$_POST['id']; //$_POST instead?
@@ -60,9 +61,8 @@ if (doesEntryExist('auth_token', $auth_token) && !didEntryExpire('auth_token', $
 //response code
     if (empty($response['errors'])) {
         //$query = "SELECT u.id AS user_ID, l.auth_token AS auth_token, u.username AS username, u.password AS password, a.pic AS picture FROM users as u JOIN avatars as a on u.id = a.uid";
-        $query = "SELECT u.id, u.email, u.username, a.pic, l.login_timestamp
+        $query = "SELECT u.id, u.email, u.username, l.login_timestamp
               FROM users as u
-              JOIN avatars as a ON u.id = a.uid
               JOIN logins as l ON u.id = l.uid";
         $rows = mysqli_query($conn, $query);
 
