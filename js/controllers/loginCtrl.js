@@ -1,5 +1,5 @@
 var app = angular.module("blogApp");
-app.controller("loginCtrl", function(userService) {
+app.controller("loginCtrl", function(userService, $location) {
         var self = this;
         self.data = {};
         self.data.email = '';
@@ -7,7 +7,7 @@ app.controller("loginCtrl", function(userService) {
         self.submitLogin = function() {
                 console.log(self.data);
             userService.loginUser(self.data).then(function(response){
-                    console.log(response);
+                    $location.path("/");
             });
         };
 

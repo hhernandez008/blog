@@ -33,7 +33,7 @@ app.controller("mainCtrl", function(articleReadService, articleEditService, user
         }
         articleReadService.listArticles(data)
             .then(function(response){
-                console.log(response);
+                console.log("tag search", response);
                 //response is object store in array for ngRepeat
                 //empty array from previous search
                 articleReadService.searchResponse = [];
@@ -46,7 +46,7 @@ app.controller("mainCtrl", function(articleReadService, articleEditService, user
     articleReadService.articleList = [];
 
     //make call to list articles
-    if(userService.authToken.length > 0){
+    /*if(userService.authToken.length > 0){
         console.log("list articles passed user_token");
         data = { auth_token: userService.authToken };
         articleReadService.listArticles(data).then(function (response) {
@@ -55,14 +55,14 @@ app.controller("mainCtrl", function(articleReadService, articleEditService, user
         }, function(response){
             console.log("list articles failed: ", response);
         });
-    }else {
+    }else {*/
         articleReadService.listArticles().then(function (response) {
-            console.log(response);
+            console.log("no user signed in");
             articleReadService.articleList = response;
         }, function (response) {
             console.log("list articles failed: ", response);
         });
-    }
+
 
     //for view to display article list array
     blc.returnArticleList = function(){
@@ -74,8 +74,8 @@ app.controller("mainCtrl", function(articleReadService, articleEditService, user
 }).controller("searchCtrl", function(articleReadService, articleEditService, userService){
     //for view to display article list array
     this.returnSearchResponse = function(){
-        console.log(articleReadService.searchResponse);
-        return articleReadService.searchResponse;
+        console.log("search ctrl", articleReadService.searchResponse[0]);
+        return articleReadService.searchResponse[0];
     };
 }).controller("newArticleCtrl", function(articleEditService, userService){
     var nac = this;

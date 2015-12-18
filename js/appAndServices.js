@@ -65,7 +65,7 @@ app.service("userService", function ($http, $log, $q) {
         data = paramString(data);
         var defer = $q.defer();
         $http({
-            url: "http://edenprime.cloudapp.net/blog/login_user.php",
+            url: "https://edenprime.cloudapp.net/blog/login_user.php",
             method: "post",
             data: data
         }).then(function (response) {
@@ -73,7 +73,7 @@ app.service("userService", function ($http, $log, $q) {
             console.log("success", response);
             if (response.data.success) {
                 useServ.uid = response.data.data.uid;
-                useServ.auth_token = response.data.data.auth_token;
+                useServ.authToken = response.data.data.auth_token;
                 useServ.username = response.data.data.username;
                 defer.resolve(response.data.data);
             } else {
@@ -92,7 +92,7 @@ app.service("userService", function ($http, $log, $q) {
         data = paramString(data);
         var defer = $q.defer();
         $http({
-            url: "http://edenprime.cloudapp.net/blog/register_user.php",
+            url: "https://edenprime.cloudapp.net/blog/register_user.php",
             method: "post",
             data: data
         }).then(function (response) {
@@ -200,7 +200,7 @@ app.service("userService", function ($http, $log, $q) {
             data = paramString(data);
         } else {
             $http({
-                url: "http://edenprime.cloudapp.net/blog/list_blogs.php",
+                url: "https://edenprime.cloudapp.net/blog/list_blogs.php",
                 method: "post"
             }).then(function (response) {
                 //successful response
@@ -218,7 +218,7 @@ app.service("userService", function ($http, $log, $q) {
             return defer.promise;
         }
         $http({
-            url: "http://s-apis.learningfuze.com/blog/list.json",
+            url: "https://edenprime.cloudapp.net/blog/list_blogs.php",
             method: "post",
             data: data
         }).then(function (response) {
@@ -242,12 +242,13 @@ app.service("userService", function ($http, $log, $q) {
         data = paramString(data);
         var defer = $q.defer();
         $http({
-            url: "http://edenprime.cloudapp.net/blog/read_one_blog.php",
+            url: "https://edenprime.cloudapp.net/blog/read_one_blog.php",
             method: "post",
             data: data
         }).then(function (response) {
             //successful response
             console.log("success", response);
+            console.log("response.data.data", response.data.data);
             if (response.data.success) {
                 defer.resolve(response.data.data);
             } else {

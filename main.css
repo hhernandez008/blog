@@ -3,7 +3,13 @@ body {
   padding-top: 70px;
  
 }
-
+.navbar-inverse .navbar-brand{
+    font-weight: bold;
+    color: #ffffff;
+}
+.navbar-inverse .navbar-brand:focus, .navbar-inverse .navbar-brand:hover{
+    color: #3b6b9c;
+}
 .jumbotron {
     background-color: #f8f8f8;
     padding: 35px 40px;
